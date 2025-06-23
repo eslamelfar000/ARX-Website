@@ -20,6 +20,7 @@ export interface ProjectType {
   meta_keywords: string;
   catigories: string;
   location: string;
+  location_link: string;
   features: Array<{
     id?: number;
     key?: string;
