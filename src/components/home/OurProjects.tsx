@@ -103,7 +103,7 @@ const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
 
           {/* Stacked Cards Container */}
           <div className="relative w-full grid grid-cols-1 gap-10">
-            {displayProjects.map((project, index) => {
+            {displayProjects.map((project) => {
               return (
                 <div
                   key={project.id}
