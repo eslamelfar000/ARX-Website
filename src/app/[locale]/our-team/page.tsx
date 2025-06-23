@@ -4,6 +4,7 @@ import { getTranslations } from "next-intl/server";
 import React from "react";
 import { getAllTeamMembers } from "@/libs/helpers/teamData";
 import TeamMemberCard from "@/components/TeamMemberCard";
+import { AnimatedElement } from "@/components/animations/AnimationType";
 
 async function Page({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -28,10 +29,16 @@ async function Page({ params }: { params: Promise<{ locale: string }> }) {
           <div className="flex justify-center">
             <SmallHeadSpan>{t("title")}</SmallHeadSpan>
           </div>
-          <h2 className="text-[70px] font-semibold">
-            <p>{t("global_executive")}</p>
-            <p>{t("leadership")}</p>
-          </h2>
+          <AnimatedElement
+            type="slideUp"
+            duration={1}
+            className="w-full h-full"
+          >
+            <h2 className="text-[70px] font-semibold">
+              <p>{t("global_executive")}</p>
+              <p>{t("leadership")}</p>
+            </h2>
+          </AnimatedElement>
         </div>
         <div className="max-w-7xl mx-auto grid gap-4 sm:grid-cols-2 lg:grid-cols-3 gap-y-25 gap-x-5">
           {teamMembers.map((member) => (

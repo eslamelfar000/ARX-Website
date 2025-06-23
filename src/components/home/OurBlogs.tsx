@@ -13,6 +13,8 @@ import { Navigation, Pagination } from "swiper/modules";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { ArrowRightIcon } from "lucide-react";
+import { AnimatedElement } from "../animations/AnimationType";
+import SmallHeadSpan from "../SharedComponent/SmallHeadSpan";
 
 const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
   const t = useTranslations("home");
@@ -26,17 +28,26 @@ const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
       <section className="container mx-auto px-4">
         <div className="mb-14 flex flex-col lg:flex-row justify-between lg:items-end gap-5">
           <div className="max-w-2xl flex flex-col items-start">
-            <h3 className="text-[12px] font-[600]  uppercase mb-5 p-2 px-5 border border-[#035B8D] rounded-full">
-              {t("our_blog")}
-            </h3>
-            <h2
-              className="font-[Cinzel] text-3xl lg:text-5xl font-bold uppercase leading-[1.2] tracking-tight"
-              dangerouslySetInnerHTML={{
-                __html: t("discover_inspiration_and_trends"),
-              }}
-            />
+            <div className="cover">
+              <SmallHeadSpan>{t("our_blog")}</SmallHeadSpan>
+            </div>
+
+            <AnimatedElement
+              type="slideLeft"
+              duration={1}
+              className="w-full h-full"
+            >
+              <h2
+                className="font-[Cinzel] text-3xl lg:text-5xl font-bold uppercase leading-[1.2] tracking-tight"
+                dangerouslySetInnerHTML={{
+                  __html: t("discover_inspiration_and_trends"),
+                }}
+              />
+            </AnimatedElement>
           </div>
+
           <div className="flex justify-end items-center">
+          <AnimatedElement type="slideRight" duration={1} className="w-full h-full">
             <Link
               href="/blogs"
               className="group text-[14px] font-medium text-black flex items-center gap-2 hover:text-white hover:bg-[#035B8D] px-1 pl-3 py-1 rounded-full border border-gray-300 transition-all duration-300 ease-in-out"
@@ -44,10 +55,12 @@ const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
               {t("view_all")}
               <ArrowRightIcon className="w-10 h-10 p-2 bg-[#035B8D] rounded-full text-white group-hover:bg-white group-hover:text-[#035B8D] transition-all duration-300 ease-in-out" />
             </Link>
+          </AnimatedElement>
           </div>
         </div>
 
         <div className="relative">
+          <AnimatedElement type="slideUp" duration={1.5} className="w-full h-full">
           <Swiper
             modules={[Navigation, Pagination]}
             spaceBetween={24}
@@ -121,8 +134,9 @@ const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
                   </div>
                 </div>
               </SwiperSlide>
-            ))}
-          </Swiper>
+              ))}
+            </Swiper>
+          </AnimatedElement>
         </div>
       </section>
     </div>

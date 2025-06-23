@@ -13,6 +13,7 @@ import Testimonial from "@/components/home/Testimonial";
 import { getTestimonials } from "@/libs/helpers/testimonials";
 import SupportersPage from "@/components/home/Supporters";
 import { TestimonialType } from "@/libs/types/types";
+import { AnimatedElement } from "@/components/animations/AnimationType";
 
 const AboutPage = () => {
   const t = useTranslations("about");
@@ -54,9 +55,15 @@ const AboutPage = () => {
           {/* Left Section */}
           <div className="left-section">
             <SmallHeadSpan>{t("vision_title")}</SmallHeadSpan>
-            <h2 className="font-bold text-[50px] lg:text-[60px] xl:text-[70px] text-black leading-[1.1em] ">
-              {t("description")}
-            </h2>
+            <AnimatedElement
+              type="slideUp"
+              duration={1}
+              className="w-full h-full"
+            >
+              <h2 className="font-bold text-[50px] lg:text-[60px] xl:text-[70px] text-black leading-[1.1em] ">
+                {t("description")}
+              </h2>
+            </AnimatedElement>
           </div>
           {/* Right Section */}
           <div className="right-section">
@@ -68,16 +75,39 @@ const AboutPage = () => {
             </p>
 
             <div className="flex items-center gap-4 mt-10 md:mt-16">
-              <SectionButton href="/our-team">
-                {t("vision_button")}
-              </SectionButton>
+              <AnimatedElement
+                type="slideLeft"
+                duration={1}
+                className="w-full h-full"
+              >
+                <SectionButton href="/our-team">
+                  {t("vision_button")}
+                </SectionButton>
+              </AnimatedElement>
             </div>
           </div>
         </section>
 
         <section className="h-full md:h-[650px] w-full max-w-7xl mx-auto flex items-end justify-end mb-10">
           <div className="bg-[url('/about-top-image.jpg')] bg-cover bg-center w-full h-full rounded-3xl p-3 flex items-end relative pt-60 md:pt-0 pb-10 md:pb-3">
-            <div className="absolute top-0 left-0 w-[250px] h-[60px] bg-white rounded-br-3xl"></div>
+            {/* shapes */}
+            <div className="cover z-10 absolute top-0 left-0 w-full h-full">
+              <div
+                className="absolute top-[59px] left-[-1px] bg-white w-[30px] h-[30px] rounded-br-2xl rotate-[90deg]"
+                style={{
+                  clipPath: ' path("M0 0 Q0,30 30,30 L 0 30 Z")',
+                }}
+              ></div>
+              <div className="absolute top-0 left-0 bg-white w-[240px] h-[60px] rounded-br-3xl"></div>
+              <div
+                className="absolute top-[-3px] left-[240px] bg-white w-[30px] h-[30px] rounded-tl-4xl rotate-[90deg]"
+                style={{
+                  clipPath: ' path("M0 0 Q0,30 30,30 L 0 30 Z")',
+                }}
+              ></div>
+            </div>
+            {/* end shapes */}
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 justify-items-end w-full">
               {[
                 {
@@ -121,6 +151,7 @@ const AboutPage = () => {
                   ),
                   count: 40,
                   span: "col-span-3",
+                  animation: "slideUp",
                 },
                 {
                   title: t("small_cards.square_feet_of_property"),
@@ -168,6 +199,8 @@ const AboutPage = () => {
                   count: 18,
                   unit: "m",
                   span: "col-span-2",
+                  animation: "slideUp",
+                  delay: 0.4,
                 },
                 {
                   title: t("small_cards.total_projects_cost"),
@@ -200,29 +233,45 @@ const AboutPage = () => {
                   count: 2.5,
                   unit: "b",
                   span: "col-span-1",
+                  animation: "slideUp",
+                  delay: 0.2,
                 },
-              ].map(({ title, icon, count, span, unit }, idx) => (
-                <div
-                  key={idx}
-                  className={`md:${span} bg-white p-8 rounded-3xl w-full md:w-[300px] shadow-lg`}
-                >
-                  <div className="flex justify-end mb-5">
-                    <p className="">{icon}</p>
+              ].map(
+                ({ title, icon, count, span, unit, animation, delay }, idx) => (
+                  <div
+                    key={idx}
+                    className={`md:${span} rounded-3xl w-full md:w-[300px] `}
+                  >
+                    <AnimatedElement
+                      type={animation as "slideUp" | "slideLeft" | "slideRight"}
+                      duration={1}
+                      delay={delay}
+                      className="w-full h-full bg-white p-8 rounded-3xl shadow-lg"
+                    >
+                      <div className="flex justify-end mb-5 ">
+                        <p className="">{icon}</p>
+                      </div>
+                      <div className="">
+                        <span className="text-[70px] font-[700] text-black flex items-center leading-none">
+                          <CountUp
+                            end={count}
+                            duration={3}
+                            scrollSpyOnce={true}
+                            enableScrollSpy={true}
+                          />
+                          <span>{unit}</span>
+                          <span className="text-[30px] font-[700] text-[#035B8D]">
+                            +
+                          </span>
+                        </span>
+                        <p className="font-[600] text-gray-400 text-[17px]">
+                          {title}
+                        </p>
+                      </div>
+                    </AnimatedElement>
                   </div>
-                  <div className="">
-                    <span className="text-[70px] font-[700] text-black flex items-center leading-none">
-                      <CountUp end={count} duration={3} />
-                      <span>{unit}</span>
-                      <span className="text-[30px] font-[700] text-[#035B8D]">
-                        +
-                      </span>
-                    </span>
-                    <p className="font-[600] text-gray-400 text-[17px]">
-                      {title}
-                    </p>
-                  </div>
-                </div>
-              ))}
+                )
+              )}
             </div>
           </div>
         </section>
@@ -231,8 +280,19 @@ const AboutPage = () => {
           <div className="head-section mb-10">
             <SmallHeadSpan>{t("vision_title")}</SmallHeadSpan>
             <h3 className="leading-none tracking-tighter capitalize text-[40px] md:text-[70px] ">
-              <p className="text-start text-black font-[700]">Learn more</p>
-              <p className=" text-start text-black font-[700]">about us</p>
+              <AnimatedElement
+                type="slideUp"
+                duration={1}
+                className="w-full h-full"
+              >
+                <p className="text-start text-black font-[700]">
+                  {t("learn_more")}
+                </p>
+
+                <p className=" text-start text-black font-[700]">
+                  {t("about_us")}
+                </p>
+              </AnimatedElement>
             </h3>
           </div>
 
@@ -244,6 +304,7 @@ const AboutPage = () => {
                 description: t("big_cards.first_card_description"),
                 button: t("big_cards.first_card_button"),
                 background: "bg-[#002c45]",
+                animation: "slideRight",
               },
               {
                 span: "02.",
@@ -253,6 +314,7 @@ const AboutPage = () => {
                 background: "bg-[#035B8D]",
                 top: true,
                 image: "/build.png",
+                animation: "slideUp",
               },
               {
                 span: "03.",
@@ -260,82 +322,89 @@ const AboutPage = () => {
                 description: t("big_cards.third_card_description"),
                 button: t("big_cards.third_card_button"),
                 backgroundImage: "bg-[url('/bg.jpg')]",
+                animation: "slideLeft",
               },
             ].map((item, index) => (
-              <div
+              <AnimatedElement
                 key={index}
-                className={`group relative p-10 rounded-3xl w-full h-[500px] text-white flex flex-col overflow-hidden ${
-                  item.top ? "justify-start" : "justify-between"
-                } ${
-                  item.background || item.backgroundImage
-                } bg-cover bg-center`}
+                type={item.animation as "slideUp" | "slideLeft" | "slideRight"}
+                duration={1}
+                className="w-full h-full"
               >
-                {/* shapes */}
-                <div className="cover z-10 absolute top-0 left-0 w-full h-full">
-                  <div
-                    className="absolute bottom-[55px] right-[-1px] bg-white w-[30px] h-[30px] rounded-br-2xl rotate-[-90deg]"
-                    style={{
-                      clipPath: ' path("M0 0 Q0,30 30,30 L 0 30 Z")',
-                    }}
-                  ></div>
-                  <div className="absolute bottom-0 right-0 bg-white w-[55px] h-[55px] rounded-tl-3xl"></div>
-                  <div
-                    className="absolute bottom-[-1px] right-[51px] bg-white w-[30px] h-[30px] rounded-br-4xl rotate-[-90deg]"
-                    style={{
-                      clipPath: ' path("M0 0 Q0,30 30,30 L 0 30 Z")',
-                    }}
-                  ></div>
-                </div>
-                {/* end shapes */}
-
-                {item.backgroundImage && (
-                  <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 rounded-3xl"></div>
-                )}
                 <div
-                  className={`head-span border-b ${
-                    item.top ? "mb-5" : ""
-                  } pb-2 z-10`}
+                  className={`group relative p-10 rounded-3xl w-full h-[500px] text-white flex flex-col overflow-hidden ${
+                    item.top ? "justify-start" : "justify-between"
+                  } ${
+                    item.background || item.backgroundImage
+                  } bg-cover bg-center`}
                 >
-                  <span className="text-[14px] font-[600] ">{item.span}</span>
-                </div>
-                <div className="bottom z-10">
-                  <h3 className="text-[35px] font-[700]">{item.title}</h3>
-                  <p className="text-[18px] font-[500] opacity-70">
-                    {item.description}
-                  </p>
-
-                  <div className="read mt-6">
-                    <Link
-                      href="/"
-                      className="group relative pb-1 text-[18px] font-[500] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-white after:transition-all after:duration-300 hover:after:w-0"
-                    >
-                      {item.button}
-                      <span className="text-[18px] font-[500] after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-0 after:h-[1px] after:bg-white after:transition-all after:duration-300 after:delay-200 group-hover:after:w-full"></span>
-                    </Link>
+                  {/* shapes */}
+                  <div className="cover z-10 absolute top-0 left-0 w-full h-full">
+                    <div
+                      className="absolute bottom-[55px] right-[-1px] bg-white w-[30px] h-[30px] rounded-br-2xl rotate-[-90deg]"
+                      style={{
+                        clipPath: ' path("M0 0 Q0,30 30,30 L 0 30 Z")',
+                      }}
+                    ></div>
+                    <div className="absolute bottom-0 right-0 bg-white w-[55px] h-[55px] rounded-tl-3xl"></div>
+                    <div
+                      className="absolute bottom-[-1px] right-[51px] bg-white w-[30px] h-[30px] rounded-br-4xl rotate-[-90deg]"
+                      style={{
+                        clipPath: ' path("M0 0 Q0,30 30,30 L 0 30 Z")',
+                      }}
+                    ></div>
                   </div>
+                  {/* end shapes */}
 
-                  {item.top && (
-                    <Image
-                      src={item.image}
-                      alt={item.title}
-                      width={100}
-                      height={100}
-                      className="absolute bottom-[-40px] left-[-40px] w-[300px] z-0"
-                    />
+                  {item.backgroundImage && (
+                    <div className="absolute top-0 left-0 w-full h-full bg-black opacity-50 rounded-3xl"></div>
                   )}
-
-                  {/* floating button */}
-                  <div className="floating-button absolute bottom-0 right-0 z-10">
-                    <Link
-                      href="/"
-                      className="bg-[#035B8D] group-hover:bg-black rounded-full p-2 flex items-center justify-center rotate-[-45deg] hover:rotate-[315deg] transition-all duration-300"
-                    >
-                      <ArrowRightIcon className="w-7 h-7" />
-                    </Link>
+                  <div
+                    className={`head-span border-b ${
+                      item.top ? "mb-5" : ""
+                    } pb-2 z-10`}
+                  >
+                    <span className="text-[14px] font-[600] ">{item.span}</span>
                   </div>
-                  {/* end floating button */}
+                  <div className="bottom z-10">
+                    <h3 className="text-[35px] font-[700]">{item.title}</h3>
+                    <p className="text-[18px] font-[500] opacity-70">
+                      {item.description}
+                    </p>
+
+                    <div className="read mt-6">
+                      <Link
+                        href="/"
+                        className="group relative pb-1 text-[18px] font-[500] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-white after:transition-all after:duration-300 hover:after:w-0"
+                      >
+                        {item.button}
+                        <span className="text-[18px] font-[500] after:content-[''] after:absolute after:bottom-0 after:right-0 after:w-0 after:h-[1px] after:bg-white after:transition-all after:duration-300 after:delay-200 group-hover:after:w-full"></span>
+                      </Link>
+                    </div>
+
+                    {item.top && (
+                      <Image
+                        src={item.image}
+                        alt={item.title}
+                        width={100}
+                        height={100}
+                        className="absolute bottom-[-40px] left-[-40px] w-[300px] z-0"
+                      />
+                    )}
+
+                    {/* floating button */}
+                    <div className="floating-button absolute bottom-0 right-0 z-10">
+                      <Link
+                        href="/"
+                        className="bg-[#035B8D] group-hover:bg-black rounded-full p-2 flex items-center justify-center rotate-[-45deg] hover:rotate-[315deg] transition-all duration-300"
+                      >
+                        <ArrowRightIcon className="w-7 h-7" />
+                      </Link>
+                    </div>
+                    {/* end floating button */}
+                  </div>
                 </div>
-              </div>
+              </AnimatedElement>
             ))}
           </div>
         </section>

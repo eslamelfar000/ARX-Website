@@ -39,7 +39,11 @@
         "hero_button": "Get your free quote",
         "our_projects_description": "Our projects generate lasting dividends",
         "our_partners": "We're proud to partner with best-in-class clients",
-        "view_all":"View All Blogs"
+        "view_all":"View All Blogs",
+        "hero_description_part_one": "We are a top 25 builder and developer fully invested",
+        "hero_description_part_two": "in our customers' success and improving the",
+        "hero_description_part_three": "communities we serve.",
+        "selected_projects": "Selected Projects"
     },
     "second_hero":{
         "title": "We're here to help you build your dream home",
@@ -69,7 +73,7 @@
             "square_feet_of_property":"square feet of property",
             "total_projects_cost":"total projects cost"
         },
-
+        "about_us": "About Us",
         "big_cards":{
             "what_we_do":"What we do",
             "our_impact":"Our Impact",
@@ -230,6 +234,7 @@
         "view_all":"View All Posts"
     },
     "core_values":{
+        "page_title": "Core Values",
         "title": "An exceptional quality that can't be beaten",
         "description": "What makes us different",
         "what_makes_us_different": "What makes us different",

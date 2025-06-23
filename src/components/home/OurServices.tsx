@@ -2,15 +2,16 @@
 
 import React, { useState } from "react";
 import { NextPage } from "next";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import Image from "next/image";
-import FadeAnimation from "../animations/FadeAnimation";
 import SmallHeadSpan from "../SharedComponent/SmallHeadSpan";
 import SectionButton from "../SharedComponent/SectionButton";
+import { AnimatedElement } from "../animations/AnimationType";
 
 const OurServices: NextPage = ({}) => {
   const t = useTranslations("our_features");
   const [activeTab, setActiveTab] = useState(0);
+  const locale = useLocale();
 
   const services = [
     {
@@ -98,18 +99,54 @@ const OurServices: NextPage = ({}) => {
             {/* Tab Content */}
             <SmallHeadSpan>{t("span")}</SmallHeadSpan>
             {/* Section Title */}
-            <div className="relative mb-12">
-              <h2 className="text-[40px] lg:text-[60px] font-[700] leading-[0.9em] font-bold mt-2 font-['Helvetica']">
-                {t("title")}
-              </h2>
-            </div>
-            <SectionButton href="/about">{t("read_more")}</SectionButton>
+            <AnimatedElement
+              type="slideLeft"
+              duration={1}
+              className="w-full h-full"
+            >
+              <div className="relative mb-12">
+                <h2 className="text-[40px] lg:text-[60px] font-[700] leading-[0.9em] font-bold mt-2 font-['Helvetica']">
+                  {t("title")}
+                </h2>
+              </div>
+            </AnimatedElement>
+            <AnimatedElement
+              type="slideLeft"
+              duration={1}
+              delay={0.3}
+              className="w-full h-full"
+            >
+              <SectionButton href={`/${locale}/services`}>
+                {t("read_more")}
+              </SectionButton>
+            </AnimatedElement>
           </div>
 
           {/* Right Column - Image */}
           <div className="cover w-full">
-            <FadeAnimation direction="in" key={`image-${activeTab}`}>
-              <div className="relative rounded-3xl">
+            <div className="relative rounded-3xl">
+              {/* shapes */}
+              <div className="cover z-10 absolute top-0 left-0 w-full h-full">
+                <div
+                  className="absolute top-[59px] left-[-1px] bg-white w-[30px] h-[30px] rounded-br-2xl rotate-[90deg]"
+                  style={{
+                    clipPath: ' path("M0 0 Q0,30 30,30 L 0 30 Z")',
+                  }}
+                ></div>
+                <div className="absolute top-0 left-0 bg-white w-[240px] h-[60px] rounded-br-3xl"></div>
+                <div
+                  className="absolute top-[-3px] left-[240px] bg-white w-[30px] h-[30px] rounded-tl-4xl rotate-[90deg]"
+                  style={{
+                    clipPath: ' path("M0 0 Q0,30 30,30 L 0 30 Z")',
+                  }}
+                ></div>
+              </div>
+              {/* end shapes */}
+              <AnimatedElement
+                type="slideUp"
+                duration={1}
+                className="w-full h-full"
+              >
                 <Image
                   src={services[activeTab].image}
                   alt={services[activeTab].title}
@@ -117,44 +154,45 @@ const OurServices: NextPage = ({}) => {
                   height={500}
                   className="object-cover rounded-3xl w-full h-full shadow-none"
                 />
-                <div className="absolute top-[-1px] left-[-1px] w-[200px] h-[60px] bg-white rounded-tl-3xl shadow-none border-none rounded-br-3xl"></div>
-              </div>
-            </FadeAnimation>
+              </AnimatedElement>
+            </div>
           </div>
         </div>
 
         {/* Tab Buttons */}
-        <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-4 gap-4 items-start justify-center">
-          {services.map((service, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveTab(index)}
-              className={`p-4 rounded-lg transition-all duration-300 ${
-                activeTab === index ? "opacity-100" : "opacity-30"
-              }`}
-            >
-              <div className="">
-                <div
-                  className={`text-[#035B8D] relative mb-3 border-b-2 border-gray-300 pb-8 after:content-[''] after:absolute after:bottom-[-1px] after:left-0 after:w-0 after:h-[2px] after:bg-[#035B8D] after:transition-all after:duration-300 ${
-                    activeTab === index
-                      ? "fill-[#035B8D] after:w-full"
-                      : "fill-black"
-                  }`}
-                >
-                  {service.icon}
+        <AnimatedElement type="slideUp" duration={1} className="w-full h-full">
+          <div className="grid grid-cols-1 sm:grid-cols-2  md:grid-cols-4 gap-4 items-start justify-center">
+            {services.map((service, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveTab(index)}
+                className={`p-4 rounded-lg transition-all duration-300 ${
+                  activeTab === index ? "opacity-100" : "opacity-30"
+                }`}
+              >
+                <div className="">
+                  <div
+                    className={`text-[#035B8D] relative mb-3 border-b-2 border-gray-300 pb-8 after:content-[''] after:absolute after:bottom-[-1px] after:left-0 after:w-0 after:h-[2px] after:bg-[#035B8D] after:transition-all after:duration-300 ${
+                      activeTab === index
+                        ? "fill-[#035B8D] after:w-full"
+                        : "fill-black"
+                    }`}
+                  >
+                    {service.icon}
+                  </div>
+                  <div className="text-left">
+                    <h3 className="font-bold text-2xl capitalize">
+                      {service.title}
+                    </h3>
+                    <p className="text-md mt-1 text-gray-500">
+                      {service.description}
+                    </p>
+                  </div>
                 </div>
-                <div className="text-left">
-                  <h3 className="font-bold text-2xl capitalize">
-                    {service.title}
-                  </h3>
-                  <p className="text-md mt-1 text-gray-500">
-                    {service.description}
-                  </p>
-                </div>
-              </div>
-            </button>
-          ))}
-        </div>
+              </button>
+            ))}
+          </div>
+        </AnimatedElement>
       </div>
     </div>
   );

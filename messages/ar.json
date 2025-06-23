@@ -43,7 +43,11 @@
     "hero_button": "احصل على عرض مجاني",
     "our_projects_description": "مشاريعنا تولد أرباحًا دائمة",
     "our_partners": "نحن فخورون بالتعاون مع أفضل العملاء",
-    "view_all":"عرض الكل"
+    "view_all":"عرض الكل",
+    "hero_description_part_one": "نحن شركة بناء رائدة ومطور عقاري متخصصة",
+    "hero_description_part_two": "في تحقيق نجاح عملائنا وتحسين المجتمعات التي نخدمها.",
+    "hero_description_part_three": "نحن فخورون بالتعاون مع أفضل العملاء",
+    "selected_projects": "المشاريع المختارة"
   },
   "about": {
     "title": "من نحن",
@@ -208,6 +212,7 @@
     }
   },
   "core_values":{
+    "page_title": "قيمنا",
     "title": "جودة خارقة غير قابلة للتغلب عليها",
     "description": "ما يجعلنا مختلفين",
     "what_makes_us_different": "ما يجعلنا مختلفين",

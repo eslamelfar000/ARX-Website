@@ -19,6 +19,7 @@ import { useTranslations, useLocale } from "next-intl";
 import PageHero from "@/components/PageHero";
 import Link from "next/link";
 import SectionButton from "@/components/SharedComponent/SectionButton";
+import { AnimatedElement } from "@/components/animations/AnimationType";
 
 const iconWrapper =
   "w-8 h-8 flex items-center justify-center rounded-full bg-[#035B8D] text-white";
@@ -45,7 +46,7 @@ const ContactPage = () => {
       />
 
       {/* Contact Form Section */}
-      <div className="bg-white z-10 relative px-6 py-30 rounded-3xl">
+      <div className="bg-white z-10 relative px-6 py-40 rounded-3xl">
         <div className="max-w-7xl mx-auto">
           <div className="list">
             <ul className="grid grid-cols-1 md:grid-cols-3 gap-6 lg:gap-8">
@@ -57,6 +58,7 @@ const ContactPage = () => {
                   btn: t("email_us"),
                   description: "info@areeg.com",
                   link: "mailto:info@areeg.com",
+                  animation: "slideUp",
                 },
                 {
                   id: 2,
@@ -65,6 +67,8 @@ const ContactPage = () => {
                   btn: t("call_us"),
                   description: "16591",
                   link: "tel:16591",
+                  animation: "slideUp",
+                  delay: 0.2,
                 },
                 {
                   id: 2,
@@ -74,29 +78,40 @@ const ContactPage = () => {
                   description:
                     "New Cairo - south 90 St- top 90 building\nNew Damietta - the 3rd district – 15th St",
                   link: "https://maps.app.goo.gl/VYVirReCxBxe4zQC9",
+                  animation: "slideUp",
+                  delay: 0.4,
                 },
               ].map((item) => (
-                <li
-                  key={item.id}
-                  className="p-4 lg:p-6 xl:p-10 border border-gray-200 rounded-3xl space-y-8 flex flex-col justify-between"
-                >
-                  <div className="icon text-2xl">{item.icon}</div>
-                  <div className="content">
-                    <h3 className="text-[20px] lg:text-[25px] font-[600]">
-                      {item.title}
-                    </h3>
-                    <p className="text-[16px] lg:text-[20px] font-[500] opacity-60 ">
-                      {item.description}
-                    </p>
-                  </div>
+                <li key={item.id} className="">
+                  <AnimatedElement
+                    key={item.id}
+                    type={
+                      item.animation as "slideUp" | "slideLeft" | "slideRight"
+                    }
+                    duration={1}
+                    delay={item.delay}
+                    className="w-full h-full"
+                  >
+                    <div className="p-4 lg:p-6 xl:p-10 border border-gray-200 rounded-3xl space-y-8 flex flex-col justify-between h-full">
+                      <div className="icon text-2xl">{item.icon}</div>
+                      <div className="content">
+                        <h3 className="text-[20px] lg:text-[25px] font-[600]">
+                          {item.title}
+                        </h3>
+                        <p className="text-[16px] lg:text-[20px] font-[500] opacity-60 ">
+                          {item.description}
+                        </p>
+                      </div>
 
-                  <div className="w-full">
-                    <a href={item.link} target="_blank">
-                      <button className="bg-[#035B8D] hover:bg-black w-full text-white px-6 py-4 rounded-full font-[600] hover:bg-opacity-90 transition-all duration-300">
-                        {item.btn}
-                      </button>
-                    </a>
-                  </div>
+                      <div className="w-full">
+                        <a href={item.link} target="_blank">
+                          <button className="bg-[#035B8D] hover:bg-black w-full text-white px-6 py-4 rounded-full font-[600] hover:bg-opacity-90 transition-all duration-300">
+                            {item.btn}
+                          </button>
+                        </a>
+                      </div>
+                    </div>
+                  </AnimatedElement>
                 </li>
               ))}
             </ul>

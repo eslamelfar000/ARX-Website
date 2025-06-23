@@ -23,6 +23,8 @@ function OurValues() {
       title: t("high-quality.title"),
       description: t("high-quality.description"),
       image: "/h2_tab-icon1.jpg",
+      animation: "slideUp",
+
     },
     {
       icon: (
@@ -39,6 +41,8 @@ function OurValues() {
       title: t("innovation.title"),
       description: t("innovation.description"),
       image: "/h2_tab-icon2.jpg",
+      animation: "slideUp",
+      delay: 0.2,
     },
     {
       icon: (
@@ -57,6 +61,8 @@ function OurValues() {
       title: t("community.title"),
       description: t("community.description"),
       image: "/h2_tab-icon3.jpg",
+      animation: "slideUp",
+      delay: 0.4,
     },
     {
       icon: (
@@ -79,6 +85,8 @@ function OurValues() {
       title: t("environmental.title"),
       description: t("environmental.description"),
       image: "/h2_tab-icon4.jpg",
+      animation: "slideUp",
+      delay: 0.6,
     },
     {
       icon: (
@@ -101,6 +109,7 @@ function OurValues() {
       title: t("free_consultation.title"),
       description: t("free_consultation.description"),
       image: "/h2_tab-icon4.jpg",
+      animation: "slideUp",
     },
     {
       icon: (
@@ -123,6 +132,8 @@ function OurValues() {
       title: t("timeline.title"),
       description: t("timeline.description"),
       image: "/h2_tab-icon4.jpg",
+      animation: "slideUp",
+      delay: 0.2,
     },
     {
       icon: (
@@ -145,6 +156,8 @@ function OurValues() {
       title: t("integrity_fairness.title"),
       description: t("integrity_fairness.description"),
       image: "/h2_tab-icon4.jpg",
+      animation: "slideUp",
+      delay: 0.4,
     },
     {
       icon: (
@@ -167,6 +180,8 @@ function OurValues() {
       title: t("real_partnership.title"),
       description: t("real_partnership.description"),
       image: "/h2_tab-icon4.jpg",
+      animation: "slideUp",
+      delay: 0.6,
     },
   ];
   return values;

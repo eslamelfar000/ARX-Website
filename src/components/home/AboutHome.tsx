@@ -5,12 +5,13 @@ import Image from "next/image";
 import Vision from "../../../public/cityscape-svgrepo-com.svg";
 import Mission from "../../../public/real-estate-investment-svgrepo-com.svg";
 import Values from "../../../public/values.svg";
-import { useTranslations } from "next-intl";
-import FadeAnimation from "../animations/FadeAnimation";
+import { useLocale, useTranslations } from "next-intl";
 import SectionButton from "../SharedComponent/SectionButton";
+import { AnimatedElement } from "../animations/AnimationType";
 
 const AboutHome: NextPage = () => {
   const t = useTranslations("about");
+  const locale = useLocale();
   return (
     <div className="w-full mx-auto bg-white font-['lato'] bg-[url('/about.jpg')] bg-no-repeat bg-center bg-cover">
       <div className="overlay bg-black/30 pt-16">
@@ -18,20 +19,26 @@ const AboutHome: NextPage = () => {
           <div className="">
             <div className="">
               <div className="flex items-end justify-between gap-4 mb-18 flex-col md:flex-row">
+                <AnimatedElement type="slideLeft" duration={1} className="w-full h-full">
                 <h1 className="flex-1 text-4xl font-bold font-[Lucida Grande] text-white capitalize">
                   {t("description")}
                 </h1>
+                </AnimatedElement>
 
                 {/* Learn More button */}
+                <AnimatedElement type="slideRight" duration={1} className="w-full h-full">
                 <div className="flex-1 flex justify-end">
-                  <SectionButton href="/about">{t("learn_more")}</SectionButton>
+                  <SectionButton href={`/${locale}/about`}>
+                    {t("learn_more")}
+                  </SectionButton>
                 </div>
+                </AnimatedElement>
               </div>
 
               {/* Three columns section */}
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 mt-8">
                 {/** Vision */}
-                <FadeAnimation direction="right" className="h-full">
+                <AnimatedElement type="slideLeft" duration={1} className="w-full h-full">
                   <div className="flex flex-col items-start bg-black/30 backdrop-blur-lg p-10 h-full rounded-3xl relative z-[1]">
                     <Image
                       src={Vision}
@@ -47,10 +54,10 @@ const AboutHome: NextPage = () => {
                       {t("vision_description")}
                     </p>
                   </div>
-                </FadeAnimation>
+                </AnimatedElement>
 
                 {/** Mission */}
-                <FadeAnimation direction="up" className="h-full">
+                <AnimatedElement type="slideUp" duration={2} className="w-full h-full">
                   <div className="flex flex-col items-start bg-black/30 backdrop-blur-lg p-10 h-full rounded-3xl relative z-[1]">
                     <Image
                       src={Mission}
@@ -66,10 +73,10 @@ const AboutHome: NextPage = () => {
                       {t("mission_description")}
                     </p>
                   </div>
-                </FadeAnimation>
+                </AnimatedElement>
 
                 {/** Values */}
-                <FadeAnimation direction="left" className="h-full">
+                <AnimatedElement type="slideRight" duration={1} className="w-full h-full">
                   <div className="flex flex-col items-start bg-black/30 backdrop-blur-lg p-10 h-full rounded-3xl relative z-[1]">
                     <Image
                       src={Values}
@@ -85,7 +92,7 @@ const AboutHome: NextPage = () => {
                       {t("values_description")}
                     </p>
                   </div>
-                </FadeAnimation>
+                </AnimatedElement>
               </div>
             </div>
           </div>

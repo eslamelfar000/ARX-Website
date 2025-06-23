@@ -8,6 +8,7 @@ import { FQAType } from "@/libs/types/types";
 import PageHero from "@/components/PageHero";
 import SmallHeadSpan from "@/components/SharedComponent/SmallHeadSpan";
 import Accordion from "@/components/Accordion";
+import { AnimatedElement } from "@/components/animations/AnimationType";
 
 export default function FAQ() {
   const locale = useLocale();
@@ -66,9 +67,15 @@ export default function FAQ() {
             </div>
             {/* Right Section */}
             <div className="right-section col-span-2">
-              <h2 className="font-bold text-[50px] lg:text-[60px] xl:text-[70px] text-black leading-[1.1em] ">
-                {t("read_most_frequent_questions")}
-              </h2>
+              <AnimatedElement
+                type="slideUp"
+                duration={1}
+                className="w-full h-full"
+              >
+                <h2 className="font-bold text-[50px] lg:text-[60px] xl:text-[70px] text-black leading-[1.1em] ">
+                  {t("read_most_frequent_questions")}
+                </h2>
+              </AnimatedElement>
             </div>
           </section>
 

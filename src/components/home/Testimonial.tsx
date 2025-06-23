@@ -9,6 +9,7 @@ import "swiper/css/pagination";
 import { TestimonialType } from "@/libs/types/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { AnimatedElement } from "../animations/AnimationType";
 
 const Testimonial = ({ testimonials }: { testimonials: TestimonialType[] }) => {
   return (
@@ -129,54 +130,60 @@ const Testimonial = ({ testimonials }: { testimonials: TestimonialType[] }) => {
             </svg>
           </button>
 
-          <Swiper
-            modules={[Navigation, Pagination, Autoplay]}
-            spaceBetween={30}
-            slidesPerView={1}
-            loop
-            autoplay={{
-              delay: 4000,
-              disableOnInteraction: false,
-            }}
-            navigation={{
-              prevEl: ".testimonial-prev-button",
-              nextEl: ".testimonial-next-button",
-            }}
-            className="testimonial-swiper w-full"
+          <AnimatedElement
+            type="slideUp"
+            duration={1}
+            className="w-full h-full"
           >
-            {testimonials.map((testimonial, index) => (
-              <SwiperSlide key={testimonial.id || index}>
-                <div className="text-center">
-                  <p
-                    className="italic text-gray-700 text-4xl mb-20"
-                    dangerouslySetInnerHTML={{
-                      __html: testimonial.description,
-                    }}
-                  />
+            <Swiper
+              modules={[Navigation, Pagination, Autoplay]}
+              spaceBetween={30}
+              slidesPerView={1}
+              loop
+              autoplay={{
+                delay: 4000,
+                disableOnInteraction: false,
+              }}
+              navigation={{
+                prevEl: ".testimonial-prev-button",
+                nextEl: ".testimonial-next-button",
+              }}
+              className="testimonial-swiper w-full"
+            >
+              {testimonials.map((testimonial, index) => (
+                <SwiperSlide key={testimonial.id || index}>
+                  <div className="text-center">
+                    <p
+                      className="italic text-gray-700 text-4xl mb-20"
+                      dangerouslySetInnerHTML={{
+                        __html: testimonial.description,
+                      }}
+                    />
 
-                  <div className="flex items-center justify-center space-x-3">
-                    {testimonial.image && (
-                      <div className="w-12 h-12 rounded-full overflow-hidden">
-                        <img
-                          src={testimonial.image}
-                          alt={testimonial.name}
-                          className="object-cover w-full h-full"
-                        />
+                    <div className="flex items-center justify-center space-x-3">
+                      {testimonial.image && (
+                        <div className="w-12 h-12 rounded-full overflow-hidden">
+                          <img
+                            src={testimonial.image}
+                            alt={testimonial.name}
+                            className="object-cover w-full h-full"
+                          />
+                        </div>
+                      )}
+                      <div>
+                        <p className="font-semibold text-lg">
+                          {testimonial.name}
+                        </p>
+                        <p className="text-sm w-full border-t-1 border-[#035B8D] text-gray-500 pt-1">
+                          {testimonial.name}
+                        </p>
                       </div>
-                    )}
-                    <div>
-                      <p className="font-semibold text-lg">
-                        {testimonial.name}
-                      </p>
-                      <p className="text-sm w-full border-t-1 border-[#035B8D] text-gray-500 pt-1">
-                        {testimonial.name}
-                      </p>
                     </div>
                   </div>
-                </div>
-              </SwiperSlide>
-            ))}
-          </Swiper>
+                </SwiperSlide>
+              ))}
+            </Swiper>
+          </AnimatedElement>
         </div>
       </section>
     </div>

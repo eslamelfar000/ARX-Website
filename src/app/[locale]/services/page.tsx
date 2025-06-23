@@ -1,3 +1,4 @@
+import { AnimatedElement } from "@/components/animations/AnimationType";
 import PageHero from "@/components/PageHero";
 import { getTranslations } from "next-intl/server";
 import Image from "next/image";
@@ -49,10 +50,21 @@ async function Page({ params }: { params: Promise<{ locale: string }> }) {
 
       <section className="bg-white py-30 px-6 relative z-10 overflow-hidden rounded-3xl">
         <div className="max-w-7xl mx-auto">
-          <h2 className="text-[25px] md:text-[30px] lg:text-[35px] font-bold mb-12 lg:w-[70%] leading-none">
-            {t("description")}
-          </h2>
+          <AnimatedElement
+            type="slideLeft"
+            duration={1}
+            className="w-full h-full"
+          >
+            <h2 className="text-[25px] md:text-[30px] lg:text-[35px] font-bold mb-12 lg:w-[70%] leading-none">
+              {t("description")}
+            </h2>
+          </AnimatedElement>
 
+        <AnimatedElement
+            type="slideUp"
+            duration={1}
+            className="w-full h-full"
+          >
           <div className="grid grid-cols-1 gap-10">
             {services.map((service) => (
               <div
@@ -80,9 +92,10 @@ async function Page({ params }: { params: Promise<{ locale: string }> }) {
                     {service.description}
                   </p>
                 </div>
-              </div>
-            ))}
+                </div>
+              ))}
           </div>
+            </AnimatedElement>
         </div>
       </section>
     </div>

@@ -3,6 +3,7 @@ import { useLocale } from "next-intl";
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 import { TeamMember } from "@/libs/helpers/teamData";
+import { AnimatedElement } from "./animations/AnimationType";
 
 interface TeamMemberCardProps {
   member: TeamMember;
@@ -19,52 +20,54 @@ const TeamMemberCard: React.FC<TeamMemberCardProps> = ({
 
   if (variant === "compact") {
     return (
-      <div className="group relative rounded-3xl">
-        {/* shapes */}
-        <div className="cover z-10 absolute top-0 left-0 w-full h-full">
-          <div
-            className="absolute top-[54px] right-[0px] bg-white w-[30px] h-[30px] rounded-br-2xl rotate-[180deg]"
-            style={{
-              clipPath: ' path("M0 0 Q0,30 30,30 L 0 30 Z")',
-            }}
-          ></div>
-          <div className="absolute top-0 right-0 bg-white w-[55px] h-[55px] rounded-bl-3xl"></div>
-          <div
-            className="absolute top-[-1px] right-[54px] bg-white w-[30px] h-[30px] rounded-br-2xl rotate-[180deg]"
-            style={{
-              clipPath: ' path("M0 0 Q0,30 30,30 L 0 30 Z")',
-            }}
-          ></div>
-        </div>
+      <AnimatedElement type="slideUp" duration={1} className="w-full h-full">
+        <div className="group relative rounded-3xl">
+          {/* shapes */}
+          <div className="cover z-10 absolute top-0 left-0 w-full h-full">
+            <div
+              className="absolute top-[54px] right-[0px] bg-white w-[30px] h-[30px] rounded-br-2xl rotate-[180deg]"
+              style={{
+                clipPath: ' path("M0 0 Q0,30 30,30 L 0 30 Z")',
+              }}
+            ></div>
+            <div className="absolute top-0 right-0 bg-white w-[55px] h-[55px] rounded-bl-3xl"></div>
+            <div
+              className="absolute top-[-1px] right-[54px] bg-white w-[30px] h-[30px] rounded-br-2xl rotate-[180deg]"
+              style={{
+                clipPath: ' path("M0 0 Q0,30 30,30 L 0 30 Z")',
+              }}
+            ></div>
+          </div>
 
-        {/* floating button */}
-        <div className="floating-button absolute top-0 right-0 z-10 text-white">
-          <Link
-            href={`/${locale}/our-team/${member.id}`}
-            className="bg-[#035B8D] group-hover:bg-black rounded-full p-2 flex items-center justify-center rotate-[-45deg] hover:rotate-[315deg] transition-all duration-300"
-          >
-            <ArrowRightIcon className="w-7 h-7" />
-          </Link>
-        </div>
+          {/* floating button */}
+          <div className="floating-button absolute top-0 right-0 z-10 text-white">
+            <Link
+              href={`/${locale}/our-team/${member.id}`}
+              className="bg-[#035B8D] group-hover:bg-black rounded-full p-2 flex items-center justify-center rotate-[-45deg] hover:rotate-[315deg] transition-all duration-300"
+            >
+              <ArrowRightIcon className="w-7 h-7" />
+            </Link>
+          </div>
 
-        <div className="h-[500px] relative overflow-hidden rounded-3xl">
-          <img
-            src={member.image}
-            alt={member.name[locale as keyof typeof member.name]}
-            className="w-full h-full object-contain bg-black object-center transition-all grayscale-40 group-hover:grayscale-0 duration-400 cursor-pointer group-hover:scale-110"
-          />
+          <div className="h-[500px] relative overflow-hidden rounded-3xl">
+            <img
+              src={member.image}
+              alt={member.name[locale as keyof typeof member.name]}
+              className="w-full h-full object-contain bg-black object-center transition-all grayscale-40 group-hover:grayscale-0 duration-400 cursor-pointer group-hover:scale-110"
+            />
+          </div>
+          <div className="p-6 w-[80%] text-white flex flex-col justify-center items-center text-center absolute bottom-[-50px] left-1/2 -translate-x-1/2 bg-black/0 backdrop-blur-[30px] z-10 rounded-3xl">
+            <p className="text-[14px] font-[500]">
+              {member.job[locale as keyof typeof member.job]}
+            </p>
+            <Link href={`/${locale}/our-team/${member.id}`}>
+              <h3 className="text-[20px] xl:text-[24px] font-[600] mb-0 hover:text-[#035B8D] transition-all duration-300">
+                {member.name[locale as keyof typeof member.name]}
+              </h3>
+            </Link>
+          </div>
         </div>
-        <div className="p-6 w-[80%] text-white flex flex-col justify-center items-center text-center absolute bottom-[-50px] left-1/2 -translate-x-1/2 bg-black/0 backdrop-blur-[30px] z-10 rounded-3xl">
-          <p className="text-[14px] font-[500]">
-            {member.job[locale as keyof typeof member.job]}
-          </p>
-          <Link href={`/${locale}/our-team/${member.id}`}>
-            <h3 className="text-[20px] xl:text-[24px] font-[600] mb-0 hover:text-[#035B8D] transition-all duration-300">
-              {member.name[locale as keyof typeof member.name]}
-            </h3>
-          </Link>
-        </div>
-      </div>
+      </AnimatedElement>
     );
   }
 
