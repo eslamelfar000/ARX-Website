@@ -1,0 +1,62 @@
+"use client";
+
+import { ProjectType } from "@/libs/types/types";
+import { useEffect, useState, useCallback } from "react";
+import { Autoplay } from "swiper/modules";
+import { Swiper, SwiperSlide } from "swiper/react";
+
+const PhotosSwiper = ({
+  projectData,
+  activeTab,
+}: {
+  projectData: ProjectType | null;
+  activeTab: string;
+}) => {
+
+  return (
+    <div className="relative">
+      <Swiper
+        modules={[Autoplay]}
+        spaceBetween={24}
+        slidesPerView={3}
+        autoplay={{
+          delay: 8000,
+          disableOnInteraction: false,
+        }}
+        loop
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
+          640: {
+            slidesPerView: 2.5,
+            spaceBetween: 20,
+          },
+          1024: {
+            slidesPerView: 3,
+            spaceBetween: 24,
+          },
+        }}
+      >
+        {projectData?.property_listing_images?.map(
+          (slides: any, index: number) => (
+            <SwiperSlide key={index} className="group imageSlide">
+              <div className="w-full">
+                <div className="swiper-slide-active media w-full h-[600px] rounded-3xl overflow-hidden">
+                  <img
+                    src={slides.image}
+                    alt={slides.image}
+                    className="object-cover w-full h-full"
+                  />
+                </div>
+              </div>
+            </SwiperSlide>
+          )
+        )}
+      </Swiper>
+    </div>
+  );
+};
+
+export default PhotosSwiper;
