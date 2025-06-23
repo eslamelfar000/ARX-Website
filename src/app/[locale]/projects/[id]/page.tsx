@@ -144,7 +144,10 @@ const ProjectPage: React.FC = () => {
               style={{ transform: `translateX(-${currentVideoSlide * 100}%)` }}
             >
               {projectData?.property_listing_videos?.map((video) => (
-                <div key={video.id} className="w-full h-[600px] flex-shrink-0">
+                <div
+                  key={video.id}
+                  className="w-full h-[300px] sm:h-[400px] lg:h-[600px] xl:h-[700px] flex-shrink-0"
+                >
                   <div className="aspect-video h-full w-full bg-gray-800 overflow-hidden relative rounded-3xl">
                     {video.type === "youtube" ? (
                       <iframe
@@ -238,7 +241,7 @@ const ProjectPage: React.FC = () => {
           <div className="w-full">
             {projectData?.brochure ? (
               <div className="bg-white rounded-3xl">
-                <div className="w-full h-[600px] border border-gray-200 rounded-lg overflow-hidden">
+                <div className="w-full h-[300px] sm:h-[400px] lg:h-[600px] border border-gray-200 rounded-lg overflow-hidden">
                   <iframe
                     src={`${projectData.brochure}#toolbar=0&navpanes=0&scrollbar=0`}
                     className="w-full h-full"
@@ -292,7 +295,7 @@ const ProjectPage: React.FC = () => {
         <div className="max-w-[1350px] mx-auto px-6 mb-10">
           <div className="">
             <div className="mb-16">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 mb-4 md:mb-0">
                 <svg
                   width="30"
                   height="30"
@@ -311,14 +314,14 @@ const ProjectPage: React.FC = () => {
               </div>
 
               <div className="flex border-b border-gray-300 pb-5">
-                <h1 className="text-[30px] md:text-[45px] lg:text-[65px] font-[700] capitalize">
+                <h1 className="text-[40px] md:text-[55px] lg:text-[65px] font-[700] capitalize">
                   {projectData?.title}
                 </h1>
               </div>
             </div>
 
             <div className="list">
-              <ul className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              <ul className="grid grid-cols-2 md:flex flex-wrap md:gap-18 gap-10">
                 {[
                   {
                     id: 1,
@@ -354,15 +357,20 @@ const ProjectPage: React.FC = () => {
                       projectData?.start_price + " - " + projectData?.end_price,
                   },
                 ].map((item) => (
-                  <li className="flex items-center gap-2" key={item.id}>
+                  <li
+                    className={`flex items-center text-center ${
+                      locale === "en" ? "md:text-left" : "md:text-right"
+                    } flex-col md:flex-row gap-2`}
+                    key={item.id}
+                  >
                     <div className="icon flex items-center justify-center p-4 rounded-full border border-gray-200">
                       {item.icon}
                     </div>
                     <div className="content">
-                      <span className="text-[15px] font-[600] opacity-50">
+                      <span className="text-[14px] md:text-[15px] font-[600] opacity-50">
                         {item.title}
                       </span>
-                      <h3 className="text-[15px] font-[600]">
+                      <h3 className="text-[14px] md:text-[15px] font-[600]">
                         {item.description}
                       </h3>
                     </div>
@@ -371,11 +379,11 @@ const ProjectPage: React.FC = () => {
               </ul>
             </div>
 
-            <div className="image mt-16">
+            <div className="image mt-10 md:mt-16">
               <Image
                 src={projectData?.image}
                 alt=""
-                className="w-full h-full object-cover rounded-3xl"
+                className="w-full h-[300px] sm:h-[400px] lg:h-[600px] xl:h-full object-cover rounded-3xl"
                 width={1920}
                 height={1080}
               />
@@ -383,8 +391,8 @@ const ProjectPage: React.FC = () => {
           </div>
 
           <div className="description mt-16 grid grid-cols-12 gap-10">
-            <div className="left col-span-7">
-              <div className="text-[55px] font-[600] mb-4">
+            <div className="left col-span-12 md:col-span-7">
+              <div className="text-[35px] md:text-[40px] lg:text-[55px] font-[600] mb-4">
                 {t("project_description")}
               </div>
               <div className="text-[17px] font-[400] opacity-80">
@@ -393,10 +401,10 @@ const ProjectPage: React.FC = () => {
                 />
               </div>
             </div>
-            <div className="divider col-span-1 flex items-center justify-center">
-              <div className="w-[1px] h-full bg-gray-300"></div>
+            <div className="divider col-span-12 md:col-span-1 flex items-center justify-center">
+              <div className="w-full md:w-[1px] h-[1px] md:h-full bg-gray-300"></div>
             </div>
-            <div className="right col-span-4">
+            <div className="right col-span-12 md:col-span-4">
               <div className="text-[25px] font-[600] mb-4">
                 {t("key_details")}
               </div>
@@ -437,10 +445,10 @@ const ProjectPage: React.FC = () => {
           </div>
 
           <div className="features mt-16">
-            <div className="text-[55px] font-[600] mb-16 capitalize">
+            <div className="text-[35px] md:text-[40px] lg:text-[55px] font-[600] mb-16 capitalize">
               {t("features_amenities")}
             </div>
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 gap-y-20">
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 gap-y-20">
               {projectData?.features?.map(
                 (
                   item: {
@@ -458,7 +466,7 @@ const ProjectPage: React.FC = () => {
                   return (
                     <li
                       key={item.id}
-                      className="group text-center p-10 bg-[#F8F6F0] rounded-3xl relative flex flex-col"
+                      className="group text-center p-10 bg-gradient-to-b from-[#F6F3EC] to-[#F6F3EC00] rounded-3xl relative flex flex-col"
                     >
                       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full flex items-center justify-center z-0">
                         <svg
@@ -492,11 +500,13 @@ const ProjectPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="w-full py-30 max-w-7xl mx-auto">
+        <div className="w-full py-30 max-w-7xl mx-auto px-6">
           {/* Interactive tab navigation */}
-          <div className="head flex items-center justify-between mb-6">
+          <div className="head lg:flex items-center justify-between mb-6">
             <div className="title">
-              <h2 className="text-[55px] font-[600] mb-4">{t("media")}</h2>
+              <h2 className="text-[35px] md:text-[55px] font-[600] mb-4">
+                {t("media")}
+              </h2>
             </div>
             <div className="flex flex-wrap justify-center gap-2">
               {tabs.map((tab) => (
@@ -520,11 +530,11 @@ const ProjectPage: React.FC = () => {
           <div
             className={`h-full ${
               activeTab === "photos"
-                ? "ml-[-150px] mr-[-700px]"
+                ? "2xl:ml-[-150px] lg:mr-[-700px]"
                 : activeTab === "plan"
                 ? projectData?.property_floor_plans?.length &&
                   projectData?.property_floor_plans?.length > 0
-                  ? "ml-[-150px] mr-[-700px]"
+                  ? "lg:ml-[-150px] lg:mr-[-700px]"
                   : "ml-[0px] mr-[0px] w-full"
                 : ""
             }`}

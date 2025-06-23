@@ -10,7 +10,7 @@ const PhotosSwiper = ({ projectData }: { projectData: ProjectType | null }) => {
       <Swiper
         modules={[Autoplay]}
         spaceBetween={24}
-        slidesPerView={3}
+        slidesPerView={1}
         autoplay={{
           delay: 8000,
           disableOnInteraction: false,
@@ -18,10 +18,10 @@ const PhotosSwiper = ({ projectData }: { projectData: ProjectType | null }) => {
         loop
         breakpoints={{
           0: {
-            slidesPerView: 1,
+            slidesPerView: 1.5,
             spaceBetween: 10,
           },
-          640: {
+          991: {
             slidesPerView: 2.5,
             spaceBetween: 20,
           },
@@ -35,7 +35,7 @@ const PhotosSwiper = ({ projectData }: { projectData: ProjectType | null }) => {
           (slides: { id: number; image: string }, index: number) => (
             <SwiperSlide key={index} className="group imageSlide">
               <div className="w-full">
-                <div className="swiper-slide-active media w-full h-[600px] rounded-3xl overflow-hidden">
+                <div className="swiper-slide-active media w-full h-[300px] sm:h-[400px] lg:h-[500px] xl:h-[600px] 2xl:h-[700px] rounded-3xl overflow-hidden">
                   <img
                     src={slides.image}
                     alt={slides.image}

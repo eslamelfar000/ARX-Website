@@ -10,7 +10,7 @@ import { ArrowRightIcon } from "lucide-react";
 import CountUp from "react-countup";
 import Link from "next/link";
 import Testimonial from "@/components/home/Testimonial";
-import { getTestimonials } from "@/app/sitemap.xml/route";
+import { getTestimonials } from "@/libs/helpers/testimonials";
 import SupportersPage from "@/components/home/Supporters";
 import { TestimonialType } from "@/libs/types/types";
 
@@ -21,11 +21,16 @@ const AboutPage = () => {
 
   useEffect(() => {
     const fetchTestimonials = async () => {
-      const data = await getTestimonials(locale);
-      setTestimonials(data);
+      try {
+        const data = await getTestimonials(locale);
+        setTestimonials(data);
+      } catch (err) {
+        console.error("Failed to fetch testimonials:", err);
+      } finally {
+      }
     };
+
     fetchTestimonials();
-    // iiii
   }, [locale]);
 
   return (

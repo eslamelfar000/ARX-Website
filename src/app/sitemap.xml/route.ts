@@ -8,22 +8,6 @@ const locales = ["en", "ar"];
 
 const staticPaths = ["", "/about", "/contact", "/faqs", "/projects", "/blogs", "/services", "/core-values", "/our-team"];
 
-export async function getTestimonials(locale: string) {
-  try {
-    const response = await getData(
-      "testimonials",
-      {},
-      new AxiosHeaders({
-        lang: locale,
-      })
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Error fetching data:", error);
-    throw error;
-  }
-}
-
 async function getAllBlogs(locale: string) {
   try {
     const response = await getData(
@@ -99,6 +83,8 @@ ${urls
   <url>
     <loc>${url}</loc>
     <lastmod>${new Date().toISOString()}</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
   </url>`
   )
   .join("")}
@@ -107,6 +93,7 @@ ${urls
   return new NextResponse(sitemap, {
     headers: {
       "Content-Type": "application/xml",
+      "Cache-Control": "public, s-maxage=86400, stale-while-revalidate=3600"
     },
   });
 }

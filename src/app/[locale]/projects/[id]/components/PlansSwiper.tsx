@@ -20,6 +20,14 @@ const PlansSwiper = ({ projectData }: { projectData: ProjectType | null }) => {
           delay: 8000,
           disableOnInteraction: false,
         }}
+        breakpoints={{
+          0: {
+            slidesPerView: 1,
+          },
+          991: {
+            slidesPerView: 1.5,
+          },
+        }}
         loop
       >
         {projectData?.property_floor_plans?.length &&
@@ -38,14 +46,14 @@ const PlansSwiper = ({ projectData }: { projectData: ProjectType | null }) => {
             ) => (
               <SwiperSlide
                 key={index}
-                className="group imageSlide w-full border border-gray-200 p-10 rounded-3xl h-full"
+                className="group imageSlide w-full border border-gray-200 p-3 lg:p-10 rounded-3xl h-full"
               >
                 <div className="w-full">
-                  <div className="swiper-slide-active media w-full h-[600px] rounded-xl overflow-hidden">
+                  <div className="swiper-slide-active media w-full h-[400px] lg:h-[600px] xl:h-[700px] rounded-xl overflow-hidden object-cover">
                     <img
                       src={slides.image}
                       alt={slides.image}
-                      className="object-cover w-full h-full"
+                      className="object-contain w-full h-full"
                     />
                   </div>
                 </div>
