@@ -10,7 +10,6 @@ import "swiper/css/pagination";
 import { TestimonialType } from "@/libs/types/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { useTranslations } from "next-intl";
 
 
 const Testimonial = ({ testimonials }: { testimonials: TestimonialType[] }) => {

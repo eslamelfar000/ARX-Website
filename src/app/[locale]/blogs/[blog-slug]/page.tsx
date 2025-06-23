@@ -1,4 +1,3 @@
-import { Lato } from "next/font/google";
 import { AxiosHeaders } from "axios";
 import { getData } from "@/libs/axios/server";
 import { BlogType } from "@/libs/types/types";
