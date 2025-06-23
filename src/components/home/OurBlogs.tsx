@@ -15,6 +15,7 @@ import { useTranslations } from "next-intl";
 import { ArrowRightIcon } from "lucide-react";
 import { AnimatedElement } from "../animations/AnimationType";
 import SmallHeadSpan from "../SharedComponent/SmallHeadSpan";
+import SectionButton from "../SharedComponent/SectionButton";
 
 const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
   const t = useTranslations("home");
@@ -48,13 +49,7 @@ const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
 
           <div className="flex justify-end items-center">
           <AnimatedElement type="slideRight" duration={1} className="w-full h-full">
-            <Link
-              href="/blogs"
-              className="group text-[14px] font-medium text-black flex items-center gap-2 hover:text-white hover:bg-[#035B8D] px-1 pl-3 py-1 rounded-full border border-gray-300 transition-all duration-300 ease-in-out"
-            >
-              {t("view_all")}
-              <ArrowRightIcon className="w-10 h-10 p-2 bg-[#035B8D] rounded-full text-white group-hover:bg-white group-hover:text-[#035B8D] transition-all duration-300 ease-in-out" />
-            </Link>
+            <SectionButton href="/blogs">{t("view_all")}</SectionButton>
           </AnimatedElement>
           </div>
         </div>

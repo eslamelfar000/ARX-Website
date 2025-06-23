@@ -24,7 +24,7 @@ const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
     id: project.id || index + 1,
     title: project.title,
     location: project.location,
-    status: "In Progress", // Default status since it's not in ProjectType
+    status: t("under_construction"), // Default status since it's not in ProjectType
     description: project.description || "Project description coming soon.",
     image: project.cover,
     slug: project.slug,
@@ -149,23 +149,9 @@ const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
                               {/* Status Badge */}
                               <div className="mb-4">
                                 <span
-                                  className={`inline-flex items-center px-3 py-1 rounded-full text-sm font-medium ${
-                                    project.status === "Completed"
-                                      ? "bg-green-100 text-green-800"
-                                      : project.status === "In Progress"
-                                      ? "bg-yellow-100 text-yellow-800"
-                                      : "bg-blue-100 text-blue-800"
-                                  }`}
+                                  className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-sm font-medium bg-yellow-100 text-yellow-800`}
                                 >
-                                  <span
-                                    className={`w-2 h-2 rounded-full mr-2 ${
-                                      project.status === "Completed"
-                                        ? "bg-green-500"
-                                        : project.status === "In Progress"
-                                        ? "bg-yellow-500"
-                                        : "bg-blue-500"
-                                    }`}
-                                  ></span>
+                                  <span className={`w-2 h-2 rounded-full bg-yellow-500`}></span>
                                   {project.status}
                                 </span>
                               </div>

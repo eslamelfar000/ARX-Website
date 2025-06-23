@@ -10,8 +10,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { X } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const ContactForm = () => {
+  const t = useTranslations("home");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formData, setFormData] = useState({
     name: "",
@@ -51,13 +53,13 @@ const ContactForm = () => {
       <div className="text-center mb-8">
         <div className="inline-flex items-center gap-2 px-4 py-2 bg-gray-100 rounded-full text-sm font-medium text-gray-600 mb-6">
           <span className="w-2 h-2 bg-[#035B8D] rounded-full"></span>
-          PROPERTY
+          {t("property")}
           <span className="mx-2">•</span>
-          QUICK ENQUIRY
+          {t("quick_enquiry")}
         </div>
 
         <h2 className="text-2xl lg:text-3xl md:text-4xl font-bold text-gray-900 mb-2">
-          Get specialist advice for residential, commercial or property
+          {t("get_specialist_advice")}
         </h2>
       </div>
 
@@ -71,7 +73,7 @@ const ContactForm = () => {
             value={formData.name}
             onChange={handleInputChange}
             className="h-14 bg-gray-50 border-0 rounded-2xl px-6 text-gray-600 placeholder:text-gray-400"
-            placeholder="Your Name*"
+            placeholder={t("your_name")}
           />
           <Input
             name="email"
@@ -80,7 +82,7 @@ const ContactForm = () => {
             value={formData.email}
             onChange={handleInputChange}
             className="h-14 bg-gray-50 border-0 rounded-2xl px-6 text-gray-600 placeholder:text-gray-400"
-            placeholder="Email*"
+            placeholder={t("your_email")}
           />
         </div>
 
@@ -93,35 +95,34 @@ const ContactForm = () => {
             value={formData.phone}
             onChange={handleInputChange}
             className="h-14 bg-gray-50 border-0 rounded-2xl px-6 text-gray-600 placeholder:text-gray-400"
-            placeholder="Phone Number *"
+            placeholder={t("your_phone")}
           />
           <Select
             value={formData.inquiry}
             onValueChange={handleInquiryChange}
             required
           >
-            <SelectTrigger className="h-14! bg-gray-50 border-0 rounded-2xl px-6 text-gray-600 w-full">
-              <SelectValue placeholder="You inquiry about..." />
+            <SelectTrigger className="h-14! bg-gray-50 border-0 rounded-2xl px-6 text-gray-600 w-full ">
+              <SelectValue placeholder={t("your_inquiry_about")} />
             </SelectTrigger>
             <SelectContent className="bg-white border border-gray-200 rounded-xl shadow-lg">
-              <SelectItem value="residential">Residential Property</SelectItem>
-              <SelectItem value="commercial">Commercial Property</SelectItem>
-              <SelectItem value="investment">
-                Investment Opportunities
+              <SelectItem value="residential">
+                {t("residential_property")}
               </SelectItem>
-              <SelectItem value="consultation">Free Consultation</SelectItem>
-              <SelectItem value="valuation">Property Valuation</SelectItem>
+              <SelectItem value="commercial">
+                {t("commercial_property")}
+              </SelectItem>
+              <SelectItem value="investment">
+                {t("investment_opportunities")}
+              </SelectItem>
+              <SelectItem value="consultation">
+                {t("free_consultation")}
+              </SelectItem>
+              <SelectItem value="valuation">
+                {t("property_valuation")}
+              </SelectItem>
             </SelectContent>
           </Select>
-        </div>
-
-        {/* Disclaimer */}
-        <div className="text-center">
-          <p className="text-sm text-gray-600 mb-6">
-            We&apos;re excited to connect with you!
-            <br />
-            Required fields are marked *
-          </p>
         </div>
 
         {/* Submit Button */}
@@ -138,7 +139,7 @@ const ContactForm = () => {
               </div>
             ) : (
               <>
-                <span>Get A Call Back</span>
+                <span>{t("get_a_call_back")}</span>
                 <X className="w-4 h-4 rotate-45" />
               </>
             )}

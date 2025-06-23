@@ -1,3 +1,4 @@
+import { useLocale } from "next-intl";
 import Link from "next/link";
 import React from "react";
 
@@ -8,11 +9,17 @@ function SectionButton({
   children: React.ReactNode;
   href: string;
 }) {
+  const locale = useLocale();
+
+  console.log(locale);
+
   return (
     <div className="flex font-[sans-serif]">
       <Link
         href={href}
-        className="group flex items-center bg-white justify-center p-2 pl-5 rounded-full border border-gray-300 hover:bg-black  hover:border-black transition-all duration-300"
+        className={`group flex items-center bg-white justify-center p-2 ${
+          locale === "en" ? "pl-5" : "pr-5"
+        } rounded-full border border-gray-300 hover:bg-black  hover:border-black transition-all duration-300`}
       >
         <span className="inline-flex gap-2 items-center font-medium text-[#035B8D] hover:text-black hover:text-white transition-all duration-300 rounded-full cursor-pointer">
           <span className="text-[16px] font-[600]">{children}</span>
