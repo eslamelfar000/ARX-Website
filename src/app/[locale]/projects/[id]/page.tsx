@@ -544,19 +544,19 @@ const ProjectPage: React.FC = () => {
         </div>
 
         {/* Location Section with Map Image */}
-        <div className="max-w-7xl mx-auto">
+        <div className="max-w-7xl mx-auto px-6">
           <div className="head">
             <h2 className="text-[55px] font-[600] mb-4">{t("location")}</h2>
           </div>
           <div className="content grid grid-cols-1 lg:grid-cols-2 gap-6">
-            <div className="left w-full border border-gray-300 rounded-3xl p-14 px-20">
+            <div className="left w-full border border-gray-300 rounded-3xl xl:p-10 p-6 px-5 xl:px-20">
               <div className="border-b border-gray-300 pb-6 mb-4">
                 <span className="text-[13px] font-[600] opacity-80 uppercase">
                   {t("address")}
                 </span>
 
                 <div className="flex items-end justify-between gap-2">
-                  <h3 className="text-[30px] font-[600] capitalize">
+                  <h3 className="md:text-[30px] text-[20px] font-[600] capitalize">
                     {projectData?.location}
                   </h3>
                   <SectionButton href="#">{t("get_direction")}</SectionButton>
@@ -571,7 +571,7 @@ const ProjectPage: React.FC = () => {
                 </div>
 
                 <div className="flex items-center gap-2">
-                  <ul className="grid grid-cols-1 md:grid-cols-2 justify-between gap-8 w-full">
+                  <ul className="grid grid-cols-2 justify-between gap-8 w-full">
                     {[
                       {
                         id: 1,
@@ -634,12 +634,14 @@ const ProjectPage: React.FC = () => {
                 </div>
               </div>
             </div>
-            <div className="w-full h-full relative rounded-3xl">
+            <div className="w-full h-[300px] md:h-[500px] lg:h-[600px] xl:h-full relative rounded-3xl">
               {/* Map image from import */}
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.7890123456789!2d31.12345678901234!3d30.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDA3JzM0LjQiTiAzMcKwMDcnMzQuNCJF!5e0!3m2!1sen!2seg!4v1234567890123"
+                src={
+                  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.7890123456789!2d31.12345678901234!3d30.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDA3JzM0LjQiTiAzMcKwMDcnMzQuNCJF!5e0!3m2!1sen!2seg!4v1234567890123"
+                }
                 width="100%"
-                height="700"
+                height="100%"
                 className="rounded-3xl"
                 loading="lazy"
                 allowFullScreen
