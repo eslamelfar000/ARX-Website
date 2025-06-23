@@ -12,7 +12,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
-import { ArrowRightIcon } from "lucide-react";
 import { AnimatedElement } from "../animations/AnimationType";
 import SmallHeadSpan from "../SharedComponent/SmallHeadSpan";
 import SectionButton from "../SharedComponent/SectionButton";
