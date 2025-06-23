@@ -153,7 +153,8 @@
     "brochure_not_available_message": "لا يوجد بروشور متاح في الوقت الحالي. يرجى التحقق مرة أخرى للحصول على التحديثات.",
     "key_transport": "المواقع المهمة",
     "get_direction": "الاتجاه",
-    "address": "العنوان"
+    "address": "العنوان",
+    "features_amenities": "الميزات والمرافق"
   },
   "faqs": {
     "title": "الاسئلة الشائعة",

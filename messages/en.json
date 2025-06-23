@@ -165,7 +165,8 @@
         "brochure_not_available_message": "The project brochure is not available at the moment. Please check back later for updates.",
         "key_transport": "Key Transport",
         "get_direction": "Get Direction",
-        "address": "Address"
+        "address": "Address",
+        "features_amenities": "Features & Amenities"
     },
     "faqs":{
         "title":"FAQs",

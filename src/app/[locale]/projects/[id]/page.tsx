@@ -239,17 +239,6 @@ const ProjectPage: React.FC = () => {
           <div className="w-full">
             {projectData?.brochure ? (
               <div className="bg-white rounded-3xl">
-                <div className="flex items-center justify-between mb-6">
-                  <a
-                    href={projectData?.brochure}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center gap-2 px-4 py-2 bg-[#035B8D] text-white rounded-lg hover:bg-[#035B8D]/90 transition-colors duration-300"
-                  >
-                    <BookImage className="w-5 h-5" />
-                    <span>{t("download_brochure")}</span>
-                  </a>
-                </div>
                 <div className="w-full h-[600px] border border-gray-200 rounded-lg overflow-hidden">
                   <iframe
                     src={`${projectData.brochure}#toolbar=0&navpanes=0&scrollbar=0`}
@@ -449,8 +438,10 @@ const ProjectPage: React.FC = () => {
           </div>
 
           <div className="features mt-16">
-            <div className="text-[55px] font-[600] mb-4">{t("features")}</div>
-            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="text-[55px] font-[600] mb-16 capitalize">
+              {t("features_amenities")}
+            </div>
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 gap-y-20">
               {projectData?.features?.map(
                 (
                   item: {
@@ -470,7 +461,7 @@ const ProjectPage: React.FC = () => {
                       key={item.id}
                       className="group text-center p-10 bg-[#F8F6F0] rounded-3xl relative flex flex-col"
                     >
-                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full flex items-center justify-center z-0">
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full flex items-center justify-center z-0">
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           viewBox="0 0 320 104"
@@ -529,8 +520,13 @@ const ProjectPage: React.FC = () => {
           {/* Tab content */}
           <div
             className={`h-full ${
-              activeTab === "photos" || activeTab === "plan"
+              activeTab === "photos"
                 ? "ml-[-150px] mr-[-700px]"
+                : activeTab === "plan"
+                ? (projectData?.property_floor_plans?.length &&
+                  projectData?.property_floor_plans?.length > 0
+                    ? "ml-[-150px] mr-[-700px]"
+                    : "ml-[0px] mr-[0px] w-full")
                 : ""
             }`}
           >
@@ -539,7 +535,7 @@ const ProjectPage: React.FC = () => {
         </div>
 
         {/* Location Section with Map Image */}
-        <div className="">
+        <div className="max-w-7xl mx-auto">
           <div className="head">
             <h2 className="text-[55px] font-[600] mb-4">{t("location")}</h2>
           </div>

@@ -11,14 +11,20 @@ const PlansSwiper = ({ projectData }: { projectData: ProjectType | null }) => {
       <Swiper
         modules={[Autoplay]}
         spaceBetween={24}
-        slidesPerView={1.5}
+        slidesPerView={
+          projectData?.property_floor_plans?.length &&
+          projectData?.property_floor_plans?.length > 0
+            ? 1.5
+            : 1
+        }
         autoplay={{
           delay: 8000,
           disableOnInteraction: false,
         }}
         loop
       >
-        {projectData?.property_floor_plans ? (
+        {projectData?.property_floor_plans?.length &&
+        projectData?.property_floor_plans?.length > 0 ? (
           projectData?.property_floor_plans?.map(
             (
               slides: {
@@ -48,9 +54,9 @@ const PlansSwiper = ({ projectData }: { projectData: ProjectType | null }) => {
             )
           )
         ) : (
-          <SwiperSlide>
-            <div className="w-full h-[600px] bg-gray-200 rounded-xl">
-              <div className="text-[65px] font-[600] text-center">
+          <SwiperSlide className="w-full bg-gray-200 rounded-xl flex items-center justify-center">
+            <div className="w-full h-[600px] bg-gray-200 rounded-xl flex items-center justify-center">
+              <div className="text-[45px] font-[600] text-center">
                 No Floor Plans Available
               </div>
             </div>
