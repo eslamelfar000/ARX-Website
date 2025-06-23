@@ -192,7 +192,13 @@
         "email_us": "Email Us",
         "schedule_meeting": "Schedule Meeting",
         "follow_social": "Follow Our Social Media",
-        "send_message": "Send Us A Message",
+        "send_message": "Leave a message",
+                "new_description": "Our global real estate experts are here to help you in this ever-changing market.",
+        "get_in_touch": "Get In Touch",
+        "support_email": "Support Email",
+        "call_us": "Call Us",
+        "visit_us": "Visit Us",
+        "location": "Location",
         "form": {
         "name": "Name",
         "name_placeholder": "Enter your name",
@@ -210,7 +216,7 @@
         },
         "message": "Message",
         "message_placeholder": "Enter your message",
-        "send": "Send"
+        "send": "Submit"
         }
     },
     "blog":{
