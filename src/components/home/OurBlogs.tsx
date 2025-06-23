@@ -2,15 +2,11 @@
 "use client";
 
 import React from "react";
-import { StaticImageData } from "next/image";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
-import pm1 from "../../../public/images/home/PrimeMiniste1.png";
-import pm2 from "../../../public/images/home/PrimeMiniste2.png";
-import pm3 from "../../../public/images/home/PrimeMiniste3.png";
 import { BlogType } from "@/libs/types/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -57,14 +53,6 @@ const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
             spaceBetween={24}
             slidesPerView={3}
             loop
-            // navigation={{
-            //   prevEl: ".blog-prev-button",
-            //   nextEl: ".blog-next-button",
-            // }}
-            // pagination={{
-            //   clickable: true,
-            //   el: ".blog-pagination",
-            // }}
             breakpoints={{
               0: {
                 slidesPerView: 1,
