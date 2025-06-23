@@ -4,7 +4,13 @@ import { ProjectType } from "@/libs/types/types";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 
-const ProjectCard = ({ project }: { project?: ProjectType }) => {
+const ProjectCard = ({
+  project,
+  locale,
+}: {
+  project?: ProjectType;
+  locale: string;
+}) => {
   const t = useTranslations("projects");
 
   console.log(project?.cover);
