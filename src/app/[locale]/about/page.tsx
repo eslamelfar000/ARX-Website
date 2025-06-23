@@ -25,6 +25,7 @@ const AboutPage = () => {
       setTestimonials(data);
     };
     fetchTestimonials();
+    // iiii
   }, [locale]);
 
   return (
