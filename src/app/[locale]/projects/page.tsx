@@ -46,7 +46,7 @@ const ProjectsPage = async ({
         ]}
       />
 
-      <ProjectsClient projects={projects} locale={locale} />
+      <ProjectsClient projects={projects} />
     </div>
   );
 };

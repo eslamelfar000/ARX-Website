@@ -6,13 +6,9 @@ import Filter from "./components/Filter";
 
 interface ProjectsClientProps {
   projects: ProjectType[];
-  locale: string;
 }
 
-const ProjectsClient: React.FC<ProjectsClientProps> = ({
-  projects,
-  locale,
-}) => {
+const ProjectsClient: React.FC<ProjectsClientProps> = ({ projects }) => {
   const [filteredProjects, setFilteredProjects] =
     useState<ProjectType[]>(projects);
 
