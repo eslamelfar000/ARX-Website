@@ -155,7 +155,7 @@ const Footer: React.FC = () => {
                 delay={0.4}
                 className="w-full h-full"
               >
-                <Link href={`/${locale}/contact`}>
+                <Link href="/contact">
                   <button
                     ref={buttonRef}
                     onMouseMove={handleMouseMove}

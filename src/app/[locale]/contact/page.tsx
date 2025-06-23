@@ -3,26 +3,16 @@ import React, { useState } from "react";
 import {
   FaMapMarkerAlt,
   FaPhoneAlt,
-  FaEnvelope,
-  FaCalendarAlt,
   FaEnvelopeOpen,
 } from "react-icons/fa";
-import {
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaYoutube,
-} from "react-icons/fa6";
+
 import PhoneInput from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import { useTranslations, useLocale } from "next-intl";
 import PageHero from "@/components/PageHero";
-import Link from "next/link";
-import SectionButton from "@/components/SharedComponent/SectionButton";
 import { AnimatedElement } from "@/components/animations/AnimationType";
 
-const iconWrapper =
-  "w-8 h-8 flex items-center justify-center rounded-full bg-[#035B8D] text-white";
+
 const inputStyle = "bg-gray-100 p-6 w-full focus:outline-none rounded-full";
 
 const ContactPage = () => {

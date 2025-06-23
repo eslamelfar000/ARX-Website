@@ -10,7 +10,6 @@ import WhoWeAre from "@/components/home/WhoWeAre";
 import { getData } from "@/libs/axios/server";
 import { AxiosHeaders } from "axios";
 import Testimonial from "@/components/home/Testimonial";
-import ProjectsSection from "@/components/home/ProjectsSection";
 
 export default async function Home({
   params,
