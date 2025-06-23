@@ -1,3 +1,4 @@
+import { Lato } from "next/font/google";
 import { AxiosHeaders } from "axios";
 import { getData } from "@/libs/axios/server";
 import { BlogType } from "@/libs/types/types";
@@ -6,6 +7,12 @@ import PageHero from "@/components/PageHero";
 import { getTranslations } from "next-intl/server";
 import LatestBlogs from "./LatestBlogs";
 
+// Load Lato font
+const lato = Lato({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  variable: "--font-lato",
+});
 
 // Force static generation - no re-renders
 export const dynamic = "force-static";

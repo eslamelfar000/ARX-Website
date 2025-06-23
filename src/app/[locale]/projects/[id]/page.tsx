@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
+import heroSwiper from "../../../../../public/images/home/aa776c3816e1d51c033677ecbeb05bb997177ae0.png";
 import { getData } from "@/libs/axios/server";
 import { AxiosHeaders } from "axios";
 import { useLocale, useTranslations } from "next-intl";
@@ -522,10 +523,10 @@ const ProjectPage: React.FC = () => {
               activeTab === "photos"
                 ? "ml-[-150px] mr-[-700px]"
                 : activeTab === "plan"
-                ? (projectData?.property_floor_plans?.length &&
+                ? projectData?.property_floor_plans?.length &&
                   projectData?.property_floor_plans?.length > 0
-                    ? "ml-[-150px] mr-[-700px]"
-                    : "ml-[0px] mr-[0px] w-full")
+                  ? "ml-[-150px] mr-[-700px]"
+                  : "ml-[0px] mr-[0px] w-full"
                 : ""
             }`}
           >

@@ -1,12 +1,16 @@
 // pages/ProjectAndBlog.tsx
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
+import { StaticImageData } from "next/image";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 
+import pm1 from "../../../public/images/home/PrimeMiniste1.png";
+import pm2 from "../../../public/images/home/PrimeMiniste2.png";
+import pm3 from "../../../public/images/home/PrimeMiniste3.png";
 import { BlogType } from "@/libs/types/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
@@ -14,8 +18,20 @@ import { Link } from "@/i18n/routing";
 import { useTranslations } from "next-intl";
 import { ArrowRightIcon } from "lucide-react";
 
+type Slide = {
+  title: string;
+  location?: string;
+  image: StaticImageData;
+};
+
+const projectSlides: Slide[] = [
+  { title: "O7 Mall – O7", location: "New Damietta", image: pm1 },
+  { title: "Aura Mall", location: "New Damietta", image: pm2 },
+  { title: "Metro Towers", location: "Cairo", image: pm3 },
+];
 
 const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
+  const lastIdx = projectSlides.length - 1;
   const t = useTranslations("home");
   const tBlog = useTranslations("blog");
 

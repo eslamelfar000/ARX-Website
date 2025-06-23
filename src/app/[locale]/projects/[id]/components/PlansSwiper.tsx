@@ -3,6 +3,7 @@
 import { ProjectType } from "@/libs/types/types";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useTranslations } from "next-intl";
 
 const PlansSwiper = ({ projectData }: { projectData: ProjectType | null }) => {
   return (

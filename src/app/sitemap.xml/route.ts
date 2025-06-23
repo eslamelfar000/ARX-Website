@@ -11,7 +11,7 @@ const staticPaths = ["", "/about", "/contact", "/faqs", "/projects", "/blogs", "
 export async function getTestimonials(locale: string) {
   try {
     const response = await getData(
-      "home",
+      "testimonials",
       {},
       new AxiosHeaders({
         lang: locale,

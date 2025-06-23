@@ -1,6 +1,7 @@
 "use client";
 import React, { useEffect } from "react";
 import Image from "next/image";
+
 import { useLocale, useTranslations } from "next-intl";
 import PageHero from "@/components/PageHero";
 import SmallHeadSpan from "@/components/SharedComponent/SmallHeadSpan";
@@ -21,7 +22,7 @@ const AboutPage = () => {
   useEffect(() => {
     const fetchTestimonials = async () => {
       const data = await getTestimonials(locale);
-      setTestimonials(data.testimonials);
+      setTestimonials(data);
     };
     fetchTestimonials();
   }, [locale]);

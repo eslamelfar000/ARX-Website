@@ -1,6 +1,7 @@
 "use client";
 
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { StaticImageData } from "next/image";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -13,7 +14,20 @@ import { Link } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 import { ProjectType } from "@/libs/types/types";
 
+type Slide = {
+  title: string;
+  location?: string;
+  image: StaticImageData;
+};
+
+const projectSlides: Slide[] = [
+  { title: "O7 Mall – O7", location: "New Damietta", image: pm1 },
+  { title: "Aura Mall", location: "New Damietta", image: pm2 },
+  { title: "Metro Towers", location: "Cairo", image: pm3 },
+];
+
 const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
+  const [activeCardIndex, setActiveCardIndex] = useState(0);
   const t = useTranslations("home");
   const locale = useLocale();
 
@@ -65,7 +79,36 @@ const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
           },
         ];
 
+  // Scroll-based card stacking effect
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY;
+      const section = document.getElementById("projects-section");
+      if (!section) return;
 
+      const sectionTop = section.offsetTop;
+      const sectionHeight = section.offsetHeight;
+      const windowHeight = window.innerHeight;
+
+      // Calculate progress through the section (0 to 1)
+      const sectionProgress = Math.max(
+        0,
+        Math.min(
+          1,
+          (scrollPosition - sectionTop + windowHeight) /
+            (sectionHeight + windowHeight)
+        )
+      );
+
+      // Calculate which card should be active based on scroll progress
+      const cardCount = displayProjects.length;
+      const newActiveIndex = Math.floor(sectionProgress * cardCount);
+      setActiveCardIndex(Math.min(newActiveIndex, cardCount - 1));
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [displayProjects.length]);
 
   return (
     <div className="space-y-24 py-12">
@@ -105,7 +148,36 @@ const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
 
           {/* Stacked Cards Container */}
           <div className="relative w-full grid grid-cols-1 gap-10">
-            {displayProjects.map((project) => {
+            {displayProjects.map((project, index) => {
+              const isActive = index === activeCardIndex;
+              const isAbove = index < activeCardIndex;
+              const isBelow = index > activeCardIndex;
+
+              // Calculate transform and opacity based on position
+              let transform = "";
+              let opacity = 1;
+              let zIndex = 10;
+
+              if (isActive) {
+                // Active card - full size and opacity, centered
+                transform = "translateY(0) scale(1)";
+                opacity = 1;
+                zIndex = 30;
+              } else if (isAbove) {
+                // Cards above - fixed at top, scaled down and faded
+                const distance = activeCardIndex - index;
+                transform = "translateY(0) scale(0.7)"; // Fixed at top, scaled down
+                opacity = Math.max(0.2, 1 - distance * 0.3);
+                zIndex = 25 - distance;
+              } else if (isBelow) {
+                // Cards below - positioned below, will slide up
+                const distance = index - activeCardIndex;
+                const translateY = distance * 100; // Small offset for stacking
+                transform = `translateY(${translateY}px) scale(0.9)`;
+                opacity = Math.max(0.3, 1 - distance * 0.2);
+                zIndex = 15 - distance;
+              }
+
               return (
                 <div
                   key={project.id}
