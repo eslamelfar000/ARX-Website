@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import heroSwiper from "../../../../../public/images/home/aa776c3816e1d51c033677ecbeb05bb997177ae0.png";
 import { getData } from "@/libs/axios/server";
 import { AxiosHeaders } from "axios";
 import { useLocale, useTranslations } from "next-intl";

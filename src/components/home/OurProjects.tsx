@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
-import { StaticImageData } from "next/image";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -13,18 +12,6 @@ import pm3 from "../../../public/images/home/PrimeMiniste3.png";
 import { Link } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
 import { ProjectType } from "@/libs/types/types";
-
-type Slide = {
-  title: string;
-  location?: string;
-  image: StaticImageData;
-};
-
-const projectSlides: Slide[] = [
-  { title: "O7 Mall – O7", location: "New Damietta", image: pm1 },
-  { title: "Aura Mall", location: "New Damietta", image: pm2 },
-  { title: "Metro Towers", location: "Cairo", image: pm3 },
-];
 
 const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
   const [activeCardIndex, setActiveCardIndex] = useState(0);

@@ -1,7 +1,7 @@
 // pages/ProjectAndBlog.tsx
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import { StaticImageData } from "next/image";
 // Import Swiper styles
 import "swiper/css";
@@ -31,7 +31,6 @@ const projectSlides: Slide[] = [
 ];
 
 const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
-  const lastIdx = projectSlides.length - 1;
   const t = useTranslations("home");
   const tBlog = useTranslations("blog");
 

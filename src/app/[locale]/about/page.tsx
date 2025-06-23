@@ -1,7 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
 import Image from "next/image";
-
 import { useLocale, useTranslations } from "next-intl";
 import PageHero from "@/components/PageHero";
 import SmallHeadSpan from "@/components/SharedComponent/SmallHeadSpan";
@@ -12,7 +11,6 @@ import Link from "next/link";
 import Testimonial from "@/components/home/Testimonial";
 import { getTestimonials } from "@/app/sitemap.xml/route";
 import SupportersPage from "@/components/home/Supporters";
-import TeamSection from "@/components/TeamSection";
 import { TestimonialType } from "@/libs/types/types";
 
 const AboutPage = () => {
