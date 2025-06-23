@@ -118,7 +118,7 @@ const ContactForm = () => {
         {/* Disclaimer */}
         <div className="text-center">
           <p className="text-sm text-gray-600 mb-6">
-            We're excited to connect with you!
+            We&apos;re excited to connect with you!
             <br />
             Required fields are marked *
           </p>

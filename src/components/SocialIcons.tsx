@@ -1,5 +1,11 @@
 import React from "react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaTwitter, FaYoutube } from "react-icons/fa6";
+import {
+  FaFacebook,
+  FaInstagram,
+  FaLinkedin,
+  FaTwitter,
+  FaYoutube,
+} from "react-icons/fa6";
 
 interface SocialIconsProps {
   social: {
@@ -10,14 +16,12 @@ interface SocialIconsProps {
     linkedin?: string;
   };
   size?: "sm" | "md" | "lg";
-  variant?: "default" | "outlined" | "filled";
   className?: string;
 }
 
 const SocialIcons: React.FC<SocialIconsProps> = ({
   social,
   size = "md",
-  variant = "default",
   className = "",
 }) => {
   const socialIcons = {
@@ -32,13 +36,6 @@ const SocialIcons: React.FC<SocialIconsProps> = ({
     sm: "w-8 h-8",
     md: "w-10 h-10",
     lg: "w-12 h-12",
-  };
-
-  const variantClasses = {
-    default: "bg-[#035B8D] hover:bg-black text-white",
-    outlined:
-      "border-2 border-[#035B8D] text-[#035B8D] hover:bg-[#035B8D] hover:text-white",
-    filled: "bg-[#035B8D] text-white hover:bg-black",
   };
 
   const iconSizes = {

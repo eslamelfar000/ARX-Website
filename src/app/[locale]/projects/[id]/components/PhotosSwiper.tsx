@@ -1,18 +1,10 @@
 "use client";
 
 import { ProjectType } from "@/libs/types/types";
-import { useEffect, useState, useCallback } from "react";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-const PhotosSwiper = ({
-  projectData,
-  activeTab,
-}: {
-  projectData: ProjectType | null;
-  activeTab: string;
-}) => {
-
+const PhotosSwiper = ({ projectData }: { projectData: ProjectType | null }) => {
   return (
     <div className="relative">
       <Swiper
@@ -40,7 +32,7 @@ const PhotosSwiper = ({
         }}
       >
         {projectData?.property_listing_images?.map(
-          (slides: any, index: number) => (
+          (slides: { id: number; image: string }, index: number) => (
             <SwiperSlide key={index} className="group imageSlide">
               <div className="w-full">
                 <div className="swiper-slide-active media w-full h-[600px] rounded-3xl overflow-hidden">

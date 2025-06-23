@@ -5,8 +5,6 @@ import { BlogType } from "@/libs/types/types";
 import Script from "next/script";
 import PageHero from "@/components/PageHero";
 import { getTranslations } from "next-intl/server";
-import Link from "next/link";
-import HoverLink from "./HoverLink";
 import LatestBlogs from "./LatestBlogs";
 
 // Load Lato font
@@ -89,7 +87,7 @@ const BlogPage = async ({
   const { locale, "blog-slug": blogSlug } = await params;
 
   // Fetch data with error handling
-  let blog: any = null;
+  let blog: BlogType | null = null;
   let latest_blogs: BlogType[] = [];
 
   try {
@@ -106,7 +104,7 @@ const BlogPage = async ({
             Blog Not Found
           </h1>
           <p className="text-gray-600">
-            The blog post you're looking for doesn't exist.
+            The blog post you&apos;re looking for doesn&apos;t exist.
           </p>
         </div>
       </div>
@@ -133,7 +131,7 @@ const BlogPage = async ({
     image: blog?.image || "",
     author: {
       "@type": "Person",
-      name: blog?.author || "ARX Team",
+      name: "ARX Team",
     },
     publisher: {
       "@type": "Organization",

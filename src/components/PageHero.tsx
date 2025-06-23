@@ -30,7 +30,6 @@ const PageHero: React.FC<PageHeroProps> = ({
   hideDescription = false,
   description,
 }) => {
-  const locale = useLocale();
   const t = useTranslations("second_hero");
 
   const heightClasses = {

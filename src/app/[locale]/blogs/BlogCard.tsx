@@ -1,5 +1,4 @@
 "use client";
-import { getTranslations } from "next-intl/server";
 import React from "react";
 import { Link } from "@/i18n/routing";
 import { BlogType } from "@/libs/types/types";
@@ -72,7 +71,8 @@ function BlogCard({ post }: BlogCardProps) {
               href={`/blogs/${post.slug}`}
               className="text-black no-underline text-[18px] font-[500] capitalize relative group/title leading-none transition-all duration-300 ease-in-out"
               style={{
-                backgroundImage: "linear-gradient(to right,rgb(0, 0,rgb(0, 0, 0)5B8D)",
+                backgroundImage:
+                  "linear-gradient(to right,rgb(0, 0,rgb(0, 0, 0)5B8D)",
                 backgroundSize: "0% 2px",
                 backgroundPosition: "0 100%",
                 backgroundRepeat: "no-repeat",

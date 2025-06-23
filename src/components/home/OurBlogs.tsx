@@ -11,11 +11,11 @@ import "swiper/css/pagination";
 import pm1 from "../../../public/images/home/PrimeMiniste1.png";
 import pm2 from "../../../public/images/home/PrimeMiniste2.png";
 import pm3 from "../../../public/images/home/PrimeMiniste3.png";
-import { BlogType, ProjectType, TestimonialType } from "@/libs/types/types";
+import { BlogType } from "@/libs/types/types";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Autoplay, Navigation, Pagination } from "swiper/modules";
+import { Navigation, Pagination } from "swiper/modules";
 import { Link } from "@/i18n/routing";
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { ArrowRightIcon } from "lucide-react";
 
 type Slide = {
@@ -31,15 +31,9 @@ const projectSlides: Slide[] = [
 ];
 
 const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
-  // Projects slider state
-  const [projIdx, setProjIdx] = useState(0);
   const lastIdx = projectSlides.length - 1;
   const t = useTranslations("home");
   const tBlog = useTranslations("blog");
-  const locale = useLocale();
-
-  const nextProj = () => setProjIdx((i) => (i === lastIdx ? 0 : i + 1));
-  const prevProj = () => setProjIdx((i) => (i === 0 ? lastIdx : i - 1));
 
   return (
     <div className="space-y-24 py-30 max-w-6xl mx-auto">

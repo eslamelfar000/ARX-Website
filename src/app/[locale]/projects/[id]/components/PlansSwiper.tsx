@@ -1,17 +1,11 @@
 "use client";
 
 import { ProjectType } from "@/libs/types/types";
-import { useEffect, useState, useCallback } from "react";
 import { Autoplay } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import { useTranslations } from "next-intl";
 
-const PlansSwiper = ({
-  projectData,
-  activeTab,
-}: {
-  projectData: ProjectType | null;
-  activeTab: string;
-}) => {
+const PlansSwiper = ({ projectData }: { projectData: ProjectType | null }) => {
   return (
     <div className="relative">
       <Swiper
@@ -24,23 +18,43 @@ const PlansSwiper = ({
         }}
         loop
       >
-        {projectData?.property_floor_plans?.map(
-          (slides: any, index: number) => (
-            <SwiperSlide
-              key={index}
-              className="group imageSlide w-full border border-gray-200 p-10 rounded-3xl h-full"
-            >
-              <div className="w-full">
-                <div className="swiper-slide-active media w-full h-[600px] rounded-xl overflow-hidden">
-                  <img
-                    src={slides.image}
-                    alt={slides.image}
-                    className="object-cover w-full h-full"
-                  />
+        {projectData?.property_floor_plans ? (
+          projectData?.property_floor_plans?.map(
+            (
+              slides: {
+                id: number;
+                image: string;
+                title: string;
+                description: string;
+                created_at: string;
+                updated_at: string;
+              },
+              index: number
+            ) => (
+              <SwiperSlide
+                key={index}
+                className="group imageSlide w-full border border-gray-200 p-10 rounded-3xl h-full"
+              >
+                <div className="w-full">
+                  <div className="swiper-slide-active media w-full h-[600px] rounded-xl overflow-hidden">
+                    <img
+                      src={slides.image}
+                      alt={slides.image}
+                      className="object-cover w-full h-full"
+                    />
+                  </div>
                 </div>
-              </div>
-            </SwiperSlide>
+              </SwiperSlide>
+            )
           )
+        ) : (
+          <SwiperSlide>
+            <div className="w-full h-[600px] bg-gray-200 rounded-xl">
+              <div className="text-[65px] font-[600] text-center">
+                No Floor Plans Available
+              </div>
+            </div>
+          </SwiperSlide>
         )}
       </Swiper>
     </div>

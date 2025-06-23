@@ -3,8 +3,6 @@ import React from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { getTeamMember } from "@/libs/helpers/teamData";
 import PageHero from "@/components/PageHero";
-import { ArrowLeftIcon, MailIcon, PhoneIcon } from "lucide-react";
-import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 import SocialIcons from "@/components/SocialIcons";
@@ -117,13 +115,13 @@ const TeamMemberPage = ({ params }: TeamMemberPageProps) => {
                 </h3>
                 <div className="">
                   <p className="text-lg text-gray-700 leading-relaxed italic">
-                    "
+                    &quot;
                     {
                       member.coverLetter[
                         locale as keyof typeof member.coverLetter
                       ]
                     }
-                    "
+                    &quot;
                   </p>
                 </div>
               </section>
@@ -148,13 +146,13 @@ const TeamMemberPage = ({ params }: TeamMemberPageProps) => {
               <section>
                 <div className="">
                   <p className="text-lg text-gray-700 leading-relaxed italic">
-                    "
+                    &quot;
                     {
                       member.coverLetter[
                         locale as keyof typeof member.coverLetter
                       ]
                     }
-                    "
+                    &quot;
                   </p>
                 </div>
               </section>

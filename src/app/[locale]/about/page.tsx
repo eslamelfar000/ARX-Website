@@ -2,23 +2,23 @@
 import React, { useEffect } from "react";
 import Image from "next/image";
 
-import PartnersBanner from "/public/images/home/OurSuccessPartners.png";
 import { useLocale, useTranslations } from "next-intl";
 import PageHero from "@/components/PageHero";
 import SmallHeadSpan from "@/components/SharedComponent/SmallHeadSpan";
 import SectionButton from "@/components/SharedComponent/SectionButton";
-import { ArrowRightIcon, ChevronRightIcon, HouseIcon } from "lucide-react";
+import { ArrowRightIcon } from "lucide-react";
 import CountUp from "react-countup";
 import Link from "next/link";
 import Testimonial from "@/components/home/Testimonial";
 import { getTestimonials } from "@/app/sitemap.xml/route";
 import SupportersPage from "@/components/home/Supporters";
 import TeamSection from "@/components/TeamSection";
+import { TestimonialType } from "@/libs/types/types";
 
 const AboutPage = () => {
   const t = useTranslations("about");
   const locale = useLocale();
-  const [testimonials, setTestimonials] = React.useState<any[]>([]);
+  const [testimonials, setTestimonials] = React.useState<TestimonialType[]>([]);
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -335,14 +335,6 @@ const AboutPage = () => {
           </div>
         </section>
       </div>
-
-      {/* Team Section */}
-      <TeamSection
-        title={locale === "en" ? "Our Leadership Team" : "فريق القيادة لدينا"}
-        limit={3}
-        showViewAll={true}
-        className="bg-gray-50"
-      />
 
       <Testimonial testimonials={testimonials} />
       <div className="relative bg-white z-10 w-full pt-10 pb-20 rounded-b-3xl">

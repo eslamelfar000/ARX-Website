@@ -1,11 +1,11 @@
 import PageHero from "@/components/PageHero";
-import { useLocale, useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
 import React from "react";
 
-function page() {
-  const t = useTranslations("our_features");
-  const locale = useLocale();
+async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations("our_features");
 
   const services = [
     {
@@ -89,4 +89,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

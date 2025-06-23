@@ -5,7 +5,6 @@ import { AxiosHeaders } from "axios";
 import { getData } from "@/libs/axios/server";
 import { useLocale, useTranslations } from "next-intl";
 import { FQAType } from "@/libs/types/types";
-import { Link } from "@/i18n/routing";
 import PageHero from "@/components/PageHero";
 import SmallHeadSpan from "@/components/SharedComponent/SmallHeadSpan";
 import Accordion from "@/components/Accordion";

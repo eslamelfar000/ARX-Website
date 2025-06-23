@@ -1,12 +1,8 @@
 // "use client";
-import herobg from "../../../../public/images/home/525ab7523c86871fbf6680382ffeb83b63451acc (1).jpg";
-import ProjectCard from "./components/ProjectCard";
 import { getData } from "@/libs/axios/server";
 import { AxiosHeaders } from "axios";
-import { ProjectType } from "@/libs/types/types";
 import { getTranslations } from "next-intl/server";
 import PageHero from "@/components/PageHero";
-import Filter from "./components/Filter";
 import ProjectsClient from "./ProjectsClient";
 
 const ProjectsPage = async ({
@@ -42,7 +38,7 @@ const ProjectsPage = async ({
       <PageHero
         title={t("name")}
         backgroundImage={"/images/home/banner1.png"}
-        height="medium"
+        height="small"
         hideDescription={true}
         breadcrumbs={[
           { label: locale === "en" ? "Home" : "الرئيسية", href: "/" },

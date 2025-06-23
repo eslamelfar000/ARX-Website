@@ -3,7 +3,6 @@ import { useLocale } from "next-intl";
 import { ArrowRightIcon } from "lucide-react";
 import Link from "next/link";
 import { TeamMember } from "@/libs/helpers/teamData";
-import PageHero from "./PageHero";
 
 interface TeamMemberCardProps {
   member: TeamMember;

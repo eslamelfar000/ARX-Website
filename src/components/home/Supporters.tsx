@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import partnersImg from "../../../public/images/home/Our Partners.png";
-import bgImage from "../../../public/images/home/525ab7523c86871fbf6680382ffeb83b63451acc.jpg";
 import { useTranslations } from "next-intl";
 
 const SupportersPage: React.FC = () => {

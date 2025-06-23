@@ -10,10 +10,9 @@ import "swiper/css/pagination";
 import pm1 from "../../../public/images/home/PrimeMiniste1.png";
 import pm2 from "../../../public/images/home/PrimeMiniste2.png";
 import pm3 from "../../../public/images/home/PrimeMiniste3.png";
-import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Pagination, Autoplay, EffectFade } from "swiper/modules";
 import { Link } from "@/i18n/routing";
 import { useLocale, useTranslations } from "next-intl";
+import { ProjectType } from "@/libs/types/types";
 
 type Slide = {
   title: string;
@@ -27,7 +26,7 @@ const projectSlides: Slide[] = [
   { title: "Metro Towers", location: "Cairo", image: pm3 },
 ];
 
-const OurProjects = ({ projects }: { projects: any[] }) => {
+const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
   const [activeCardIndex, setActiveCardIndex] = useState(0);
   const t = useTranslations("home");
   const locale = useLocale();

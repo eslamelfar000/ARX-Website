@@ -6,9 +6,7 @@ import Vision from "../../../public/cityscape-svgrepo-com.svg";
 import Mission from "../../../public/real-estate-investment-svgrepo-com.svg";
 import Values from "../../../public/values.svg";
 import { useTranslations } from "next-intl";
-import { Link } from "@/i18n/routing";
 import FadeAnimation from "../animations/FadeAnimation";
-import { CircleArrowOutUpRight } from "lucide-react";
 import SectionButton from "../SharedComponent/SectionButton";
 
 const AboutHome: NextPage = () => {

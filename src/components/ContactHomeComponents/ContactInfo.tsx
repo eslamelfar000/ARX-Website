@@ -31,11 +31,12 @@ const ContactInfo = () => {
     <div className="space-y-8">
       <div>
         <h3 className="text-2xl font-bold text-gray-900 mb-4">
-          Let's Start a Conversation
+          Let&apos;s Start a Conversation
         </h3>
         <p className="text-gray-600 mb-8">
-          We're always ready to help you with your real estate and construction
-          needs. Reach out to us through any of the following methods.
+          We&apos;re always ready to help you with your real estate and
+          construction needs. Reach out to us through any of the following
+          methods.
         </p>
       </div>
 

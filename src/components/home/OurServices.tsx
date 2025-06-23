@@ -5,7 +5,6 @@ import { NextPage } from "next";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import FadeAnimation from "../animations/FadeAnimation";
-import Link from "next/link";
 import SmallHeadSpan from "../SharedComponent/SmallHeadSpan";
 import SectionButton from "../SharedComponent/SectionButton";
 

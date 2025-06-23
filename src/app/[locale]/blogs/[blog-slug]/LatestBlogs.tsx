@@ -1,6 +1,5 @@
 "use client";
 
-import Link from "next/link";
 import { memo } from "react";
 import { BlogType } from "@/libs/types/types";
 import HoverLink from "./HoverLink";

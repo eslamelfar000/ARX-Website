@@ -1,13 +1,13 @@
 import PageHero from "@/components/PageHero";
 import SmallHeadSpan from "@/components/SharedComponent/SmallHeadSpan";
-import { useLocale, useTranslations } from "next-intl";
+import { getTranslations } from "next-intl/server";
 import React from "react";
 import { getAllTeamMembers } from "@/libs/helpers/teamData";
 import TeamMemberCard from "@/components/TeamMemberCard";
 
-function page() {
-  const t = useTranslations("our_team");
-  const locale = useLocale();
+async function Page({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations("our_team");
   const teamMembers = getAllTeamMembers();
 
   return (
@@ -43,4 +43,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;

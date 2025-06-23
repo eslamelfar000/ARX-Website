@@ -134,7 +134,7 @@ const Hero = ({ projects }: { projects: ProjectType[] }) => {
                       <div className="desc mt-5">
                         <span className="text-white font-bold font-['Lato'] capitalize tracking-wide opacity-70 text-[16px] md:text-[18px] lg:text-[20px]">
                           We are a top 25 builder and developer fully invested
-                          in our customers' success and improving the
+                          in our customers&apos; success and improving the
                           communities we serve.
                         </span>
                       </div>

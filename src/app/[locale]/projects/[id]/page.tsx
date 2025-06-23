@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import mapImage from "../../../../../public/images/home/c2b5e402a0df6277694731f6bd60841b5c331ca9.jpg";
 import heroSwiper from "../../../../../public/images/home/aa776c3816e1d51c033677ecbeb05bb997177ae0.png";
 import { getData } from "@/libs/axios/server";
 import { AxiosHeaders } from "axios";
@@ -18,9 +17,6 @@ import {
   CircleDollarSignIcon,
   Layers,
   ShieldCheck,
-  Home,
-  MapPin,
-  Car,
   Wifi,
   Users,
   Star,
@@ -38,18 +34,12 @@ import {
   EarthLock,
   LayoutPanelLeft,
   TruckElectric,
-  ImageIcon,
   Images,
   Video,
   Route,
   BookImage,
 } from "lucide-react";
-import {
-  FaHouseChimneyWindow,
-  FaSquareFontAwesomeStroke,
-} from "react-icons/fa6";
 import PlansSwiper from "./components/PlansSwiper";
-import Document from "next/document";
 import SectionButton from "@/components/SharedComponent/SectionButton";
 
 interface TabContent {
@@ -59,23 +49,10 @@ interface TabContent {
   content: React.ReactNode;
 }
 
-interface FeatureTabContent {
-  id: string;
-  name: string;
-  isActive: boolean;
-}
-
 const ProjectPage: React.FC = () => {
-  // Create array of hero swiper images (repeating the same image as requested)
-  const backgroundImages = [heroSwiper, heroSwiper, heroSwiper];
   const locale = useLocale();
   const { id } = useParams();
   const [projectData, setProjectData] = useState<ProjectType | null>(null);
-  const [activeFloor, setActiveFloor] = useState(
-    projectData?.property_floor_plans[0]?.id || 1
-  );
-
-  // State for photo swiper
 
   // State for video swiper
   const [currentVideoSlide, setCurrentVideoSlide] = useState(0);
@@ -153,7 +130,7 @@ const ProjectPage: React.FC = () => {
       id: "photos",
       name: "photos",
       icon: <Images />,
-      content: <PhotosSwiper activeTab="photos" projectData={projectData} />,
+      content: <PhotosSwiper projectData={projectData} />,
     },
     {
       id: "videos",
@@ -251,7 +228,7 @@ const ProjectPage: React.FC = () => {
       id: "plan",
       name: "plan",
       icon: <Route />,
-      content: <PlansSwiper activeTab="plan" projectData={projectData} />,
+      content: <PlansSwiper projectData={projectData} />,
     },
     {
       id: "brochure",
@@ -263,15 +240,15 @@ const ProjectPage: React.FC = () => {
             {projectData?.brochure ? (
               <div className="bg-white rounded-3xl">
                 <div className="flex items-center justify-between mb-6">
-                  {/* <a
-                    href={projectData.brochure}
+                  <a
+                    href={projectData?.brochure}
                     target="_blank"
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2 bg-[#035B8D] text-white rounded-lg hover:bg-[#035B8D]/90 transition-colors duration-300"
                   >
                     <BookImage className="w-5 h-5" />
                     <span>{t("download_brochure")}</span>
-                  </a> */}
+                  </a>
                 </div>
                 <div className="w-full h-[600px] border border-gray-200 rounded-lg overflow-hidden">
                   <iframe
@@ -369,9 +346,7 @@ const ProjectPage: React.FC = () => {
                   },
                   {
                     id: 3,
-                    icon: (
-                      <FaSquareFontAwesomeStroke className="w-6 h-6 text-black" />
-                    ),
+                    icon: <Globe className="w-6 h-6 text-black" />,
                     title: t("project_area"),
                     description: projectData?.location,
                   },
@@ -447,246 +422,224 @@ const ProjectPage: React.FC = () => {
                     },
                     {
                       id: 2,
-                      key: t("price_range"),
-                      value:
-                        projectData?.start_price +
-                        " - " +
-                        projectData?.end_price,
+                      key: t("year_built"),
+                      value: projectData?.year_built,
                     },
                     {
                       id: 3,
                       key: t("location"),
                       value: projectData?.location,
                     },
-                    {
-                      id: 4,
-                      key: t("building_date"),
-                      value: projectData?.year_built,
-                    },
-                  ].map(
-                    (item: { id?: number; key?: string; value?: string }) => (
-                      <li key={item.id} className="flex gap-2">
-                        <div className="w-[6px] h-[6px] bg-[#035B8D] rounded-full mt-2"></div>
-                        <div className="flex flex-wrap items-center gap-2 leading-[1.5]">
-                          <div className="text-[17px] font-[600] text-black capitalize">
-                            {item.key} :{" "}
-                            <span className="text-[17px] opacity-80 font-[500]">
-                              {item.value}
-                            </span>
-                          </div>
-                        </div>
-                      </li>
-                    )
-                  )}
+                  ].map((item) => (
+                    <li key={item.id} className="flex items-center gap-2">
+                      <div className="icon flex items-center justify-center p-4 rounded-full border border-gray-200">
+                        <ShieldCheck className="w-6 h-6 text-black" />
+                      </div>
+                      <div className="content">
+                        <span className="text-[15px] font-[600] opacity-50">
+                          {item.key}
+                        </span>
+                        <h3 className="text-[15px] font-[600]">{item.value}</h3>
+                      </div>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
           </div>
 
-          <div className="features py-30">
-            <div className="title">
-              <h2 className="text-[55px] font-[600] mb-15">
-                {t("features_and_amenities")}
-              </h2>
-            </div>
-            <div className="content">
-              <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 gap-y-20">
-                {projectData?.features.map(
-                  (
-                    item: {
-                      id?: number;
-                      key?: string;
-                      value?: string;
-                      image?: string;
-                    },
-                    index: number
-                  ) => {
-                    // Get icon based on index or use default
-                    const IconComponent =
-                      featureIcons[index % featureIcons.length] || ShieldCheck;
+          <div className="features mt-16">
+            <div className="text-[55px] font-[600] mb-4">{t("features")}</div>
+            <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {projectData?.features?.map(
+                (
+                  item: {
+                    id?: number;
+                    key?: string;
+                    value?: string;
+                    image?: string;
+                  },
+                  index: number
+                ) => {
+                  // Get icon based on index or use default
+                  const IconComponent =
+                    featureIcons[index % featureIcons.length] || ShieldCheck;
 
-                    return (
-                      <li
-                        key={item.id}
-                        className="group text-center p-10 bg-[#F8F6F0] rounded-3xl relative flex flex-col"
-                      >
-                        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full flex items-center justify-center z-0">
-                          <svg
-                            xmlns="http://www.w3.org/2000/svg"
-                            viewBox="0 0 320 104"
-                            width={150}
-                            fill="none"
-                          >
-                            <path
-                              fillRule="evenodd"
-                              clipRule="evenodd"
-                              d="M0 0H320C290.545 0 267.772 24.6753 253.628 49.8666C235.516 82.1247 200.378 104 160 104C119.622 104 84.4835 82.1247 66.3718 49.8666C52.228 24.6753 29.4552 0 0 0Z"
-                              fill="white"
-                            ></path>
-                          </svg>
-                        </div>
-                        <div className="icon flex font-[400] items-center justify-center absolute top-[-50px] left-1/2 -translate-x-1/2 bg-[#035B8D] text-white rounded-full z-10 p-4 border-10 border-white group-hover:scale-110 transition-all duration-300">
-                          <IconComponent className="w-10 h-10 font-[400]" />
-                        </div>
-                        <div className="content z-10 mt-8">
-                          <h3 className="text-[23px] font-[600]">{item.key}</h3>
-                          <p className="text-[17px] font-[500] opacity-60">
+                  return (
+                    <li
+                      key={item.id}
+                      className="group text-center p-10 bg-[#F8F6F0] rounded-3xl relative flex flex-col"
+                    >
+                      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full flex items-center justify-center z-0">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          viewBox="0 0 320 104"
+                          width={150}
+                          fill="none"
+                        >
+                          <path
+                            fillRule="evenodd"
+                            clipRule="evenodd"
+                            d="M0 0H320C290.545 0 267.772 24.6753 253.628 49.8666C235.516 82.1247 200.378 104 160 104C119.622 104 84.4835 82.1247 66.3718 49.8666C52.228 24.6753 29.4552 0 0 0Z"
+                            fill="white"
+                          ></path>
+                        </svg>
+                      </div>
+                      <div className="icon flex font-[400] items-center justify-center absolute top-[-50px] left-1/2 -translate-x-1/2 bg-[#035B8D] text-white rounded-full z-10 p-4 border-10 border-white group-hover:scale-110 transition-all duration-300">
+                        <IconComponent className="w-10 h-10 font-[400]" />
+                      </div>
+                      <div className="content z-10 mt-8">
+                        <h3 className="text-[23px] font-[600]">{item.key}</h3>
+                        <p className="text-[17px] font-[500] opacity-60">
+                          {item.value}
+                        </p>
+                      </div>
+                    </li>
+                  );
+                }
+              )}
+            </ul>
+          </div>
+        </div>
+
+        <div className="w-full py-30 max-w-7xl mx-auto">
+          {/* Interactive tab navigation */}
+          <div className="head flex items-center justify-between mb-6">
+            <div className="title">
+              <h2 className="text-[55px] font-[600] mb-4">{t("media")}</h2>
+            </div>
+            <div className="flex flex-wrap justify-center gap-2">
+              {tabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  className={`flex items-center gap-2 p-3 px-6 rounded-full border border-gray-300 transition-all duration-300 ${
+                    activeTab === tab.id
+                      ? "bg-[#035B8D] text-white fil-white"
+                      : "bg-white text-black"
+                  }`}
+                >
+                  <span className="fill-white!">{tab.icon}</span>
+                  <span className=" uppercase text-sm">{tab.name}</span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          {/* Tab content */}
+          <div
+            className={`h-full ${
+              activeTab === "photos" || activeTab === "plan"
+                ? "ml-[-150px] mr-[-700px]"
+                : ""
+            }`}
+          >
+            {tabs.find((tab) => tab.id === activeTab)?.content}
+          </div>
+        </div>
+
+        {/* Location Section with Map Image */}
+        <div className="">
+          <div className="head">
+            <h2 className="text-[55px] font-[600] mb-4">{t("location")}</h2>
+          </div>
+          <div className="content grid grid-cols-1 lg:grid-cols-2 gap-6">
+            <div className="left w-full border border-gray-300 rounded-3xl p-14 px-20">
+              <div className="border-b border-gray-300 pb-6 mb-4">
+                <span className="text-[13px] font-[600] opacity-80 uppercase">
+                  {t("address")}
+                </span>
+
+                <div className="flex items-end justify-between gap-2">
+                  <h3 className="text-[30px] font-[600] capitalize">
+                    {projectData?.location}
+                  </h3>
+                  <SectionButton href="#">{t("get_direction")}</SectionButton>
+                </div>
+              </div>
+
+              <div className="key">
+                <div className="title mb-5">
+                  <h3 className="text-[25px] font-[600] capitalize">
+                    {t("key_transport")}
+                  </h3>
+                </div>
+
+                <div className="flex items-center gap-2">
+                  <ul className="grid grid-cols-1 md:grid-cols-2 justify-between gap-8 w-full">
+                    {[
+                      {
+                        id: 1,
+                        key: "Coast",
+                        value: "300m",
+                      },
+                      {
+                        id: 2,
+                        key: "University",
+                        value: "750m",
+                      },
+                      {
+                        id: 3,
+                        key: "Supermarket",
+                        value: "500m",
+                      },
+                      {
+                        id: 4,
+                        key: "Park",
+                        value: "1120m",
+                      },
+                      {
+                        id: 5,
+                        key: "Railway station",
+                        value: "1750m",
+                      },
+                      {
+                        id: 6,
+                        key: "Airport",
+                        value: "3158m",
+                      },
+                      {
+                        id: 7,
+                        key: "Bus station",
+                        value: "450m",
+                      },
+                      {
+                        id: 8,
+                        key: "Bank",
+                        value: "415m",
+                      },
+                      {
+                        id: 9,
+                        key: "Hospital",
+                        value: "350m",
+                      },
+                    ].map(
+                      (item: { id?: number; key?: string; value?: string }) => (
+                        <li key={item.id}>
+                          <h3 className="text-[17px] font-[600] opacity-40">
+                            {item.key}
+                          </h3>
+                          <p className="text-[17px] font-[600] ">
                             {item.value}
                           </p>
-                        </div>
-                      </li>
-                    );
-                  }
-                )}
-              </ul>
-            </div>
-          </div>
-
-          <div className="w-full py-30">
-            {/* Interactive tab navigation */}
-            <div className="head flex items-center justify-between mb-6">
-              <div className="title">
-                <h2 className="text-[55px] font-[600] mb-4">{t("media")}</h2>
-              </div>
-              <div className="flex flex-wrap justify-center gap-2">
-                {tabs.map((tab) => (
-                  <button
-                    key={tab.id}
-                    onClick={() => setActiveTab(tab.id)}
-                    className={`flex items-center gap-2 p-3 px-6 rounded-full border border-gray-300 transition-all duration-300 ${
-                      activeTab === tab.id
-                        ? "bg-[#035B8D] text-white fil-white"
-                        : "bg-white text-black"
-                    }`}
-                  >
-                    <span className="fill-white!">{tab.icon}</span>
-                    <span className=" uppercase text-sm">{tab.name}</span>
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Tab content */}
-            <div
-              className={`h-full ${
-                activeTab === "photos" || activeTab === "plan"
-                  ? "ml-[-150px] mr-[-700px]"
-                  : ""
-              }`}
-            >
-              {tabs.find((tab) => tab.id === activeTab)?.content}
-            </div>
-          </div>
-
-          {/* Location Section with Map Image */}
-          <div className="">
-            <div className="head">
-              <h2 className="text-[55px] font-[600] mb-4">{t("location")}</h2>
-            </div>
-            <div className="content grid grid-cols-1 lg:grid-cols-2 gap-6">
-              <div className="left w-full border border-gray-300 rounded-3xl p-14 px-20">
-                <div className="border-b border-gray-300 pb-6 mb-4">
-                  <span className="text-[13px] font-[600] opacity-80 uppercase">
-                    {t("address")}
-                  </span>
-
-                  <div className="flex items-end justify-between gap-2">
-                    <h3 className="text-[30px] font-[600] capitalize">
-                      {projectData?.location}
-                    </h3>
-                    <SectionButton href={projectData?.location_link || ""}>
-                      {t("get_direction")}
-                    </SectionButton>
-                  </div>
-                </div>
-
-                <div className="key">
-                  <div className="title mb-5">
-                    <h3 className="text-[25px] font-[600] capitalize">
-                      {t("key_transport")}
-                    </h3>
-                  </div>
-
-                  <div className="flex items-center gap-2">
-                    <ul className="grid grid-cols-1 md:grid-cols-2 justify-between gap-8 w-full">
-                      {[
-                        {
-                          id: 1,
-                          key: "Coast",
-                          value: "300m",
-                        },
-                        {
-                          id: 2,
-                          key: "University",
-                          value: "750m",
-                        },
-                        {
-                          id: 3,
-                          key: "Supermarket",
-                          value: "500m",
-                        },
-                        {
-                          id: 4,
-                          key: "Park",
-                          value: "1120m",
-                        },
-                        {
-                          id: 5,
-                          key: "Railway station",
-                          value: "1750m",
-                        },
-                        {
-                          id: 6,
-                          key: "Airport",
-                          value: "3158m",
-                        },
-                        {
-                          id: 7,
-                          key: "Bus station",
-                          value: "450m",
-                        },
-                        {
-                          id: 8,
-                          key: "Bank",
-                          value: "415m",
-                        },
-                        {
-                          id: 9,
-                          key: "Hospital",
-                          value: "350m",
-                        },
-                      ].map(
-                        (item: {
-                          id?: number;
-                          key?: string;
-                          value?: string;
-                        }) => (
-                          <li key={item.id}>
-                            <h3 className="text-[17px] font-[600] opacity-40">
-                              {item.key}
-                            </h3>
-                            <p className="text-[17px] font-[600] ">
-                              {item.value}
-                            </p>
-                          </li>
-                        )
-                      )}
-                    </ul>
-                  </div>
+                        </li>
+                      )
+                    )}
+                  </ul>
                 </div>
               </div>
-              <div className="w-full h-full relative rounded-3xl">
-                {/* Map image from import */}
-                <iframe
-                  src={projectData?.location_link}
-                  width="100%"
-                  height="700"
-                  className="rounded-3xl"
-                  loading="lazy"
-                  allowFullScreen
-                  referrerPolicy="no-referrer-when-downgrade"
-                />
-              </div>
+            </div>
+            <div className="w-full h-full relative rounded-3xl">
+              {/* Map image from import */}
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3456.7890123456789!2d31.12345678901234!3d30.12345678901234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzDCsDA3JzM0LjQiTiAzMcKwMDcnMzQuNCJF!5e0!3m2!1sen!2seg!4v1234567890123"
+                width="100%"
+                height="700"
+                className="rounded-3xl"
+                loading="lazy"
+                allowFullScreen
+                referrerPolicy="no-referrer-when-downgrade"
+              />
             </div>
           </div>
         </div>

@@ -2,15 +2,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "@/i18n/routing";
 import Image from "next/image";
-import {
-  FaEnvelope,
-  FaFacebookF,
-  FaInstagram,
-  FaLinkedinIn,
-  FaMapMarkerAlt,
-  FaPhone,
-  FaWhatsapp,
-} from "react-icons/fa";
+import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import { useLocale, useTranslations } from "next-intl";
 import { getData } from "@/libs/axios/server";
 import { AxiosHeaders } from "axios";
