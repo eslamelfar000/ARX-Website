@@ -1,37 +1,16 @@
 // pages/ProjectAndBlog.tsx
 "use client";
 
-import React, { useState } from "react";
-import { StaticImageData } from "next/image";
+import React from "react";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-
-import pm1 from "../../../public/images/home/PrimeMiniste1.png";
-import pm2 from "../../../public/images/home/PrimeMiniste2.png";
-import pm3 from "../../../public/images/home/PrimeMiniste3.png";
 import { TestimonialType } from "@/libs/types/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation, Pagination } from "swiper/modules";
-import { useTranslations } from "next-intl";
-
-type Slide = {
-  title: string;
-  location?: string;
-  image: StaticImageData;
-};
-
-const projectSlides: Slide[] = [
-  { title: "O7 Mall – O7", location: "New Damietta", image: pm1 },
-  { title: "Aura Mall", location: "New Damietta", image: pm2 },
-  { title: "Metro Towers", location: "Cairo", image: pm3 },
-];
 
 const Testimonial = ({ testimonials }: { testimonials: TestimonialType[] }) => {
-  const lastIdx = projectSlides.length - 1;
-  const t = useTranslations("home");
-
   return (
     <div className="space-y-24 px-4 py-40 bg-[#f8f5f0] relative mt-30 rounded-b-3xl z-10 w-full">
       {/* Circular Spinner with Text and Center Elements */}
