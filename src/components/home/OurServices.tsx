@@ -91,7 +91,7 @@ const OurServices: NextPage = ({}) => {
   ];
 
   return (
-    <div className="w-full py-20 pt-40 mx-auto bg-white font-['lato'] mt-[-100px] rounded-t-3xl">
+    <div className="w-full py-20 pt-40 mx-auto bg-white font-['lato'] mt-[-100px] rounded-t-3xl overflow-hidden">
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col md:flex-row gap-8 mb-10 items-center justify-between px-4">
           {/* Left Column - Tabs and Content */}

@@ -24,9 +24,6 @@ html[lang="en"] body select {
   font-family:  sans-serif !important;
 }
 
-body{
-  overflow-x: hidden !important;
-}
 
 html[lang="ar"] body h1,
 html[lang="ar"] body h2,
@@ -43,6 +40,11 @@ html[lang="ar"] body textarea,
 html[lang="ar"] body select {
   font-family: "Lato" !important;
 }
+
+body{
+  overflow-x: hidden !important;
+}
+
 
 button {
   cursor: pointer;

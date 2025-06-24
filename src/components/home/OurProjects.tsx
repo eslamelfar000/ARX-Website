@@ -83,7 +83,7 @@ export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
   }, []);
 
   return (
-    <div className="py-20 bg-[#f6f3ec]">
+    <div className="home_projects py-20 bg-[#f6f3ec]">
       {/* ---------------------------- */}
       {/* Projects Banner Section */}
       {/* ---------------------------- */}
@@ -192,7 +192,7 @@ export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
                           </div>
 
                           {/* Floating Button with Arrow - Bottom Right */}
-                          <div className="bg-black/20 rounded-full absolute bottom-[-20px] sm:bottom-[-25px] sm:right-[65px] right-[50px]">
+                          <div className="bg-black/20 rounded-full absolute bottom-[-20px] sm:bottom-[-25px] sm:right-[65px] right-[40px]">
                             <Link
                               href={`/projects/${project.slug}`}
                               className="group inline-flex items-center bg-[#035B8D] hover:bg-[#E1A12B] text-white p-3 rounded-full transition-all duration-300 shadow-lg hover:shadow-xl transform hover:-translate-y-1"

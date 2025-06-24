@@ -58,7 +58,7 @@ export const AnimatedElement = ({
   type = "fadeIn",
   delay = 0,
   duration = 0.5,
-  className = "",
+  className = "overflow-hidden !important",
   once = true,
 }: AnimatedElementProps) => {
   return (

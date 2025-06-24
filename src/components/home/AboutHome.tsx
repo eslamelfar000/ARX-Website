@@ -13,7 +13,7 @@ const AboutHome: NextPage = () => {
   const t = useTranslations("about");
   const locale = useLocale();
   return (
-    <div className="w-full mx-auto bg-white font-['lato'] bg-[url('/about.jpg')] bg-no-repeat bg-center bg-cover">
+    <div className="w-full mx-auto bg-white font-['lato'] bg-[url('/about.jpg')] bg-no-repeat bg-center bg-cover overflow-hidden">
       <div className="overlay bg-black/30 pt-16">
         <div className="max-w-6xl mx-auto px-4 py-12">
           <div className="">

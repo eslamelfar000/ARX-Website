@@ -21,7 +21,7 @@ const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
   const tBlog = useTranslations("blog");
 
   return (
-    <div className="space-y-24 pt-20 max-w-6xl mx-auto">
+    <div className="space-y-24 pt-20 max-w-6xl mx-auto overflow-hidden">
       {/* ---------------------------- */}
       {/* Blog Section */}
       {/* ---------------------------- */}
