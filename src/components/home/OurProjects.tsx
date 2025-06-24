@@ -87,7 +87,7 @@ export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
       {/* ---------------------------- */}
       {/* Projects Banner Section */}
       {/* ---------------------------- */}
-      <section className="max-w-6xl mx-auto ">
+      <section className="max-w-6xl mx-auto px-4">
         <div className=" px-4 relative overflow-hidden mb-[-60px] z-10">
           <div className="flex flex-col justify-center items-center">
             <SmallHeadSpan>{t("selected_projects")}</SmallHeadSpan>
@@ -131,7 +131,7 @@ export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="card h-[800px] w-full rounded-3xl"
+                className="sticky top-0 md:h-[800px] h-[600px] w-full rounded-3xl"
                 data-index={index}
                 ref={(el) => {
                   cardRefs.current[index] = el;
