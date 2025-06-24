@@ -25,7 +25,11 @@ const PlansSwiper = ({ projectData }: { projectData: ProjectType | null }) => {
             slidesPerView: 1,
           },
           991: {
-            slidesPerView: 1.5,
+            slidesPerView:
+              projectData?.property_floor_plans?.length &&
+              projectData?.property_floor_plans?.length > 0
+                ? 1.5
+                : 1,
           },
         }}
         loop

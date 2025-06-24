@@ -1,18 +1,79 @@
 "use client";
 import React, { useRef, useEffect } from "react";
 import "../../app/last.css";
-import { ProjectType } from "@/libs/types/types";
-import { useLocale } from "next-intl";
-import Link from "next/link";
-import { useTranslations } from "use-intl";
 import { AnimatedElement } from "../animations/AnimationType";
+import { ProjectType } from "@/libs/types/types";
+
+// Import Swiper styles
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+
+import pm1 from "../../../public/images/home/PrimeMiniste1.png";
+import pm2 from "../../../public/images/home/PrimeMiniste2.png";
+import pm3 from "../../../public/images/home/PrimeMiniste3.png";
+import { Link } from "@/i18n/routing";
+import { useLocale, useTranslations } from "next-intl";
 import SmallHeadSpan from "../SharedComponent/SmallHeadSpan";
 
-export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
+export const TestCards = ({
+  projects,
+}: {
+  projects: ProjectType[];
+}) => {
   const cardsContainerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
-  const locale = useLocale();
+
   const t = useTranslations("home");
+  const locale = useLocale();
+
+  // Use fetched projects data
+  const bannerProjects = projects.map((project, index) => ({
+    id: project.id || index + 1,
+    title: project.title,
+    location: project.location,
+    status: t("under_construction"), // Default status since it's not in ProjectType
+    description: project.description || "Project description coming soon.",
+    image: project.cover,
+    slug: project.slug,
+  }));
+
+  // Fallback to sample data if no projects are fetched
+  const displayProjects =
+    bannerProjects.length > 0
+      ? bannerProjects
+      : [
+          {
+            id: 1,
+            title: "O7 Mall – O7",
+            location: "New Damietta",
+            status: "Completed",
+            description:
+              "A state-of-the-art shopping mall featuring premium retail spaces, entertainment zones, and modern amenities. This landmark project showcases innovative architectural design and sustainable development practices.",
+            image: pm1.src,
+            slug: "o7-mall",
+          },
+          {
+            id: 2,
+            title: "Aura Mall",
+            location: "New Damietta",
+            status: "In Progress",
+            description:
+              "An upcoming luxury shopping destination that will redefine retail experiences. Featuring international brands, fine dining, and entertainment facilities in a contemporary architectural masterpiece.",
+            image: pm2.src,
+            slug: "aura-mall",
+          },
+          {
+            id: 3,
+            title: "Metro Towers",
+            location: "Cairo",
+            status: "Planning",
+            description:
+              "A prestigious mixed-use development combining residential, commercial, and hospitality spaces. This iconic project will become a new landmark in Cairo's skyline with world-class amenities.",
+            image: pm3.src,
+            slug: "metro-towers",
+          },
+        ];
 
   useEffect(() => {
     const cardsContainer = cardsContainerRef.current;
@@ -31,13 +92,12 @@ export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
     const observers: IntersectionObserver[] = [];
 
     cards.forEach((card, index) => {
-      const offsetTop = 130 + index * 0;
+      const offsetTop = 20 + index * 20;
       card.style.paddingTop = `${offsetTop}px`;
 
       if (index === cards.length - 1) return;
 
       const toScale = 1 - (cards.length - 1 - index) * 0.1;
-      const toOpacity = 1 - (cards.length - 1 - index) * 0.2;
       const cardInner = card.querySelector(".card__inner") as HTMLElement;
 
       if (!cardInner) return;
@@ -57,7 +117,6 @@ export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
               );
 
               cardInner.style.scale = String(1 - (1 - toScale) * percentageY);
-              card.style.opacity = String(1 - (1 - toOpacity) * percentageY);
               cardInner.style.filter = `brightness(${
                 1 - (1 - 0.6) * percentageY
               })`;
@@ -83,61 +142,25 @@ export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
   }, []);
 
   return (
-    <div className="py-20 bg-[#f6f3ec]">
-      {/* ---------------------------- */}
-      {/* Projects Banner Section */}
-      {/* ---------------------------- */}
-      <section className="max-w-6xl mx-auto ">
-        <div className=" px-4 relative overflow-hidden mb-[-60px] z-10">
-          <div className="flex flex-col justify-center items-center">
-            <SmallHeadSpan>{t("selected_projects")}</SmallHeadSpan>
-
-            <div className="max-w-2xl text-center">
-              <AnimatedElement
-                type="slideUp"
-                duration={1}
-                className="w-full h-full"
-              >
-                <span className="text-3xl lg:text-5xl uppercase font-extrabold text-gray-900">
-                  {t("our_projects_description")}
-                </span>
-              </AnimatedElement>
-            </div>
-
-            <Link
-              href="/projects"
-              className="mt-4 items-center justify-center w-fit flex gap-1 text-[#035B8D] font-medium transition hover:text-[#E1A12B]"
-            >
-              {t("see_all_projects")}{" "}
-              <svg
-                className={`${locale === "ar" ? "mirror" : ""}`}
-                width="17"
-                height="17"
-                viewBox="0 0 17 17"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-              >
-                <path
-                  d="M8.50008 3.21484L7.56008 4.15484L11.2801 7.88151H3.16675V9.21484H11.2801L7.56008 12.9415L8.50008 13.8815L13.8334 8.54818L8.50008 3.21484Z"
-                  fill="#035B8D"
-                />
-              </svg>
-            </Link>
-          </div>
-        </div>
-
-        <section className="w-full h-full relative bg-[#f6f3ec]">
-          <div className="gap-14 grid grid-cols-1" ref={cardsContainerRef}>
-            {projects.map((project, index) => (
+    <section>
+      <div className="space space--small"></div>
+      {/* Stacked Cards Container */}
+      <AnimatedElement type="slideUp" duration={1} className="w-full h-full">
+        <section
+          className="cards w-full grid grid-cols-1 gap-[500px]"
+          ref={cardsContainerRef}
+        >
+          {displayProjects.map((project, index) => {
+            return (
               <div
                 key={project.id}
-                className="card h-[800px] w-full rounded-3xl"
+                className="card h-[600px] inset-0 transition-all duration-1000 ease-out sticky top-0"
                 data-index={index}
                 ref={(el) => {
                   cardRefs.current[index] = el;
                 }}
               >
-                <div className="relative rounded-3xl overflow-hidden w-full h-full">
+                <div className="relative h-full w-full rounded-3xl overflow-hidden">
                   {/* Background Image */}
                   <div className="absolute inset-0 z-0">
                     <img
@@ -163,7 +186,7 @@ export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
                               <span
                                 className={`w-2 h-2 rounded-full bg-yellow-500`}
                               ></span>
-                              {t("under_construction")}
+                              {project.status}
                             </span>
                           </div>
 
@@ -218,10 +241,11 @@ export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
                   </div>
                 </div>
               </div>
-            ))}
-          </div>
+            );
+          })}
         </section>
-      </section>
-    </div>
+      </AnimatedElement>
+      <div className="space"></div>
+    </section>
   );
 };

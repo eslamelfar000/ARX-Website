@@ -2,7 +2,7 @@ import AboutHome from "@/components/home/AboutHome";
 import Hero from "@/components/home/Hero";
 import HomeContact from "@/components/home/HomeContact";
 import OurBlogs from "@/components/home/OurBlogs";
-import OurProjects from "@/components/home/OurProjects";
+import { OurProjects } from "@/components/home/OurProjects";
 import OurServices from "@/components/home/OurServices";
 import ShortsPage from "@/components/home/OurShorts";
 import SupportersPage from "@/components/home/Supporters";
@@ -35,6 +35,9 @@ export default async function Home({
 
   const HomeData = await feachData();
   // console.log(HomeData);
+
+
+
   return (
     <div>
       <Hero projects={HomeData.projects} />

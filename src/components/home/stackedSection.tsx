@@ -8,7 +8,11 @@ import { useTranslations } from "use-intl";
 import { AnimatedElement } from "../animations/AnimationType";
 import SmallHeadSpan from "../SharedComponent/SmallHeadSpan";
 
-export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
+export const ParallaxCardsSection = ({
+  projects,
+}: {
+  projects: ProjectType[];
+}) => {
   const cardsContainerRef = useRef<HTMLDivElement>(null);
   const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
   const locale = useLocale();
@@ -31,13 +35,12 @@ export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
     const observers: IntersectionObserver[] = [];
 
     cards.forEach((card, index) => {
-      const offsetTop = 130 + index * 0;
+      const offsetTop = 40 + index * 40;
       card.style.paddingTop = `${offsetTop}px`;
 
       if (index === cards.length - 1) return;
 
       const toScale = 1 - (cards.length - 1 - index) * 0.1;
-      const toOpacity = 1 - (cards.length - 1 - index) * 0.2;
       const cardInner = card.querySelector(".card__inner") as HTMLElement;
 
       if (!cardInner) return;
@@ -57,7 +60,6 @@ export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
               );
 
               cardInner.style.scale = String(1 - (1 - toScale) * percentageY);
-              card.style.opacity = String(1 - (1 - toOpacity) * percentageY);
               cardInner.style.filter = `brightness(${
                 1 - (1 - 0.6) * percentageY
               })`;
@@ -88,7 +90,7 @@ export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
       {/* Projects Banner Section */}
       {/* ---------------------------- */}
       <section className="max-w-6xl mx-auto ">
-        <div className=" px-4 relative overflow-hidden mb-[-60px] z-10">
+        <div className=" px-4 relative overflow-hidden mb-20">
           <div className="flex flex-col justify-center items-center">
             <SmallHeadSpan>{t("selected_projects")}</SmallHeadSpan>
 
@@ -131,7 +133,7 @@ export const OurProjects = ({ projects }: { projects: ProjectType[] }) => {
             {projects.map((project, index) => (
               <div
                 key={project.id}
-                className="card h-[800px] w-full rounded-3xl"
+                className="card h-[700px] w-full rounded-3xl"
                 data-index={index}
                 ref={(el) => {
                   cardRefs.current[index] = el;
