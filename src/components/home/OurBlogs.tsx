@@ -47,46 +47,53 @@ const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
           </div>
 
           <div className="flex justify-end items-center">
-          <AnimatedElement type="slideRight" duration={1} className="w-full h-full">
-            <SectionButton href="/blogs">{t("view_all")}</SectionButton>
-          </AnimatedElement>
+            <AnimatedElement
+              type="slideRight"
+              duration={1}
+              className="w-full h-full"
+            >
+              <SectionButton href="/blogs">{t("view_all")}</SectionButton>
+            </AnimatedElement>
           </div>
         </div>
 
         <div className="relative">
-          <AnimatedElement type="slideUp" duration={1.5} className="w-full h-full">
-          <Swiper
-            modules={[Navigation, Pagination]}
-            spaceBetween={24}
-            slidesPerView={3}
-            loop
-            breakpoints={{
-              0: {
-                slidesPerView: 1,
-                spaceBetween: 10,
-              },
-              640: {
-                slidesPerView: 2.5,
-                spaceBetween: 20,
-              },
-              1024: {
-                slidesPerView: 3,
-                spaceBetween: 24,
-              },
-            }}
+          <AnimatedElement
+            type="slideUp"
+            duration={1.5}
+            className="w-full h-full"
           >
-            {blogs?.map((post: BlogType, index: number) => (
-              <SwiperSlide key={index} className="group">
-                <div className="relative w-full">
-                  <div className="media w-full h-60 rounded-3xl overflow-hidden mb-5">
-                    <img
-                      src={post.image}
-                      alt={post.title}
-                      className="object-cover w-full h-full -translate-x-6 scale-[1.2] transition-all duration-300 ease-in-out group-hover:translate-x-0"
-                    />
-                  </div>
-                  <div className="">
-                    <Link href={`/blogs/${post.slug}`} className="rounded">
+            <Swiper
+              modules={[Navigation, Pagination]}
+              spaceBetween={24}
+              slidesPerView={3}
+              loop
+              breakpoints={{
+                0: {
+                  slidesPerView: 1,
+                  spaceBetween: 10,
+                },
+                640: {
+                  slidesPerView: 2.5,
+                  spaceBetween: 20,
+                },
+                1024: {
+                  slidesPerView: 3,
+                  spaceBetween: 24,
+                },
+              }}
+            >
+              {blogs?.map((post: BlogType, index: number) => (
+                <SwiperSlide key={index} className="group">
+                  <div className="relative w-full">
+                    <div className="media w-full h-60 rounded-3xl overflow-hidden mb-5">
+                      <img
+                        src={post.image}
+                        alt={post.title}
+                        className="object-cover w-full h-full -translate-x-6 scale-[1.2] transition-all duration-300 ease-in-out group-hover:translate-x-0"
+                      />
+                    </div>
+                    <div className="">
                       <div className="head grid grid-cols-3 items-center gap-5 mb-4">
                         <span className="text-[12px] font-medium text-black text-center bg-[#035B8D] text-white px-1 py-2 rounded-full w-full">
                           {tBlog("category")}
@@ -124,10 +131,9 @@ const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
                           {post.title}
                         </Link>
                       </div>
-                    </Link>
+                    </div>
                   </div>
-                </div>
-              </SwiperSlide>
+                </SwiperSlide>
               ))}
             </Swiper>
           </AnimatedElement>

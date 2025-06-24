@@ -5,10 +5,11 @@ import Script from "next/script";
 import PageHero from "@/components/PageHero";
 import { getTranslations } from "next-intl/server";
 import LatestBlogs from "./LatestBlogs";
+import { notFound } from "next/navigation";
 
-// Force static generation - no re-renders
-export const dynamic = "force-static";
-export const revalidate = false; // Disable revalidation completely
+// Change to dynamic rendering for better production handling
+export const dynamic = "force-dynamic";
+export const revalidate = 3600; // Revalidate every hour
 
 // Function to sanitize HTML content - only allow text formatting tags
 const sanitizeHtml = (html: string): string => {
@@ -39,6 +40,8 @@ const sanitizeHtml = (html: string): string => {
 // Move data fetching outside component to prevent recreation on each render
 const fetchBlogData = async (blogSlug: string, locale: string) => {
   try {
+    console.log(`Fetching blog data for slug: ${blogSlug}, locale: ${locale}`);
+
     const response = await getData(
       `blog/${blogSlug}`,
       {},
@@ -46,9 +49,25 @@ const fetchBlogData = async (blogSlug: string, locale: string) => {
         lang: locale,
       })
     );
+
+    console.log("Blog API response:", response);
+
+    if (!response.data || !response.data.blog) {
+      throw new Error("Blog not found in API response");
+    }
+
     return response.data;
   } catch (error) {
     console.error("Error fetching blog data:", error);
+
+    // Check if it's a 404 error
+    if (error && typeof error === "object" && "response" in error) {
+      const axiosError = error as any;
+      if (axiosError.response?.status === 404) {
+        throw new Error("BLOG_NOT_FOUND");
+      }
+    }
+
     throw error;
   }
 };
@@ -78,6 +97,8 @@ const BlogPage = async ({
 }) => {
   const { locale, "blog-slug": blogSlug } = await params;
 
+  console.log(`BlogPage params - locale: ${locale}, slug: ${blogSlug}`);
+
   // Fetch data with error handling
   let blog: BlogType | null = null;
   let latest_blogs: BlogType[] = [];
@@ -86,17 +107,29 @@ const BlogPage = async ({
     const data = await fetchBlogData(blogSlug, locale);
     blog = data.blog;
     latest_blogs = data.latest_blogs || [];
+
+    if (!blog) {
+      console.log("Blog is null, throwing not found");
+      notFound();
+    }
   } catch (error) {
-    // Handle error gracefully
     console.error("Failed to fetch blog data:", error);
+
+    // If it's a "not found" error, use Next.js notFound()
+    if (error instanceof Error && error.message === "BLOG_NOT_FOUND") {
+      notFound();
+    }
+
+    // For other errors, show a more specific error page
     return (
       <div className="min-h-screen flex items-center justify-center">
         <div className="text-center">
           <h1 className="text-2xl font-bold text-gray-800 mb-4">
-            Blog Not Found
+            Something went wrong
           </h1>
           <p className="text-gray-600">
-            The blog post you&apos;re looking for doesn&apos;t exist.
+            We&apos;re having trouble loading this blog post. Please try again
+            later.
           </p>
         </div>
       </div>
@@ -107,6 +140,8 @@ const BlogPage = async ({
 
   // Sanitize the blog description
   const sanitizedDescription = sanitizeHtml(blog?.description || "");
+
+  console.log("Blog data:", blog);
 
   // Generate JSON-LD data
   const jsonLd = {
