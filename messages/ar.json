@@ -313,7 +313,8 @@
     "category":"عقاري",
     "welcome_to_our_blog":"مرحباً بكم في مدونتنا، حيث نشارك أحدث الأخبار",
     "welcome_to_our_blog_description":"أخبار ونصائح وأفكار ملهمة!",
-    "view_all":"عرض الكل"
+    "view_all":"عرض الكل",
+    "blog_not_found":"المدونة غير موجودة"
   },
   "footer":{
     "footer_hero_title":"منزلك المثالي ينتظرك",

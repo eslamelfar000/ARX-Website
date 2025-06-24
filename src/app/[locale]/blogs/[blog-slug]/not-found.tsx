@@ -13,8 +13,7 @@ export default async function NotFound() {
             Blog Post Not Found
           </h2>
           <p className="text-gray-600 mb-8">
-            The blog post you&apos;re looking for doesn&apos;t exist or may have
-            been moved.
+            {t("blog_not_found")}
           </p>
         </div>
 

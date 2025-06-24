@@ -62,7 +62,7 @@ const fetchBlogData = async (blogSlug: string, locale: string) => {
 
     // Check if it's a 404 error
     if (error && typeof error === "object" && "response" in error) {
-      const axiosError = error as any;
+      const axiosError = error as { response?: { status?: number } };
       if (axiosError.response?.status === 404) {
         throw new Error("BLOG_NOT_FOUND");
       }
