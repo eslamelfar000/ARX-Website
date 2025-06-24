@@ -150,7 +150,7 @@ const AboutPage = () => {
                     </svg>
                   ),
                   count: 40,
-                  span: "col-span-3",
+                  span: "col-span-1 md:col-span-3",
                   animation: "slideUp",
                 },
                 {
@@ -198,7 +198,7 @@ const AboutPage = () => {
                   ),
                   count: 18,
                   unit: "m",
-                  span: "col-span-2",
+                  span: "col-span-1 md:col-span-2",
                   animation: "slideUp",
                   delay: 0.4,
                 },
@@ -232,7 +232,7 @@ const AboutPage = () => {
                   ),
                   count: 2.5,
                   unit: "b",
-                  span: "col-span-1",
+                  span: "col-span-1 md:col-span-1",
                   animation: "slideUp",
                   delay: 0.2,
                 },
@@ -240,7 +240,7 @@ const AboutPage = () => {
                 ({ title, icon, count, span, unit, animation, delay }, idx) => (
                   <div
                     key={idx}
-                    className={`md:${span} rounded-3xl w-full md:w-[300px] `}
+                    className={`${span} rounded-3xl w-full md:w-[300px]`}
                   >
                     <AnimatedElement
                       type={animation as "slideUp" | "slideLeft" | "slideRight"}
@@ -411,7 +411,7 @@ const AboutPage = () => {
       </div>
 
       <Testimonial testimonials={testimonials} />
-      <div className="relative bg-white z-10 w-full pt-10 pb-20 rounded-b-3xl">
+      <div className="relative bg-white z-10 w-full rounded-b-3xl">
         <SupportersPage />
       </div>
     </div>
