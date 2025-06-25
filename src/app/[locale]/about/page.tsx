@@ -80,7 +80,7 @@ const AboutPage = () => {
                 duration={1}
                 className="w-full h-full"
               >
-                <SectionButton href="/our-team">
+                <SectionButton href={`/${locale}/our-team`}>
                   {t("vision_button")}
                 </SectionButton>
               </AnimatedElement>
@@ -305,6 +305,7 @@ const AboutPage = () => {
                 button: t("big_cards.first_card_button"),
                 background: "bg-[#002c45]",
                 animation: "slideRight",
+                href: "/services",
               },
               {
                 span: "02.",
@@ -315,6 +316,7 @@ const AboutPage = () => {
                 top: true,
                 image: "/build.png",
                 animation: "slideUp",
+                href: "/projects",
               },
               {
                 span: "03.",
@@ -323,6 +325,7 @@ const AboutPage = () => {
                 button: t("big_cards.third_card_button"),
                 backgroundImage: "bg-[url('/bg.jpg')]",
                 animation: "slideLeft",
+                href: "/core-values",
               },
             ].map((item, index) => (
               <AnimatedElement
@@ -374,7 +377,7 @@ const AboutPage = () => {
 
                     <div className="read mt-6">
                       <Link
-                        href="/"
+                        href={`/${locale}${item.href}`}
                         className="group relative pb-1 text-[18px] font-[500] after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-white after:transition-all after:duration-300 hover:after:w-0"
                       >
                         {item.button}
@@ -395,7 +398,7 @@ const AboutPage = () => {
                     {/* floating button */}
                     <div className="floating-button absolute bottom-0 right-0 z-10">
                       <Link
-                        href="/"
+                        href={`/${locale}${item.href}`}
                         className="bg-[#035B8D] group-hover:bg-black rounded-full p-2 flex items-center justify-center rotate-[-45deg] hover:rotate-[315deg] transition-all duration-300"
                       >
                         <ArrowRightIcon className="w-7 h-7" />
