@@ -21,7 +21,7 @@ function SectionButton({
           locale === "en" ? "pl-5" : "pr-5"
         } rounded-full border border-gray-300 hover:bg-black  hover:border-black transition-all duration-300`}
       >
-        <span className="inline-flex gap-2 items-center font-medium text-[#035B8D] hover:text-black hover:text-white transition-all duration-300 rounded-full cursor-pointer">
+        <span className="inline-flex gap-2 items-center font-medium text-[#035B8D]  group-hover:text-white transition-all duration-300 rounded-full cursor-pointer">
           <span className="text-[16px] font-[600]">{children}</span>
           <svg
             className="w-10 h-10 bg-[#035B8D]  rounded-full p-1 text-white group-hover:rotate-305 transition-all duration-300"

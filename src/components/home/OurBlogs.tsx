@@ -11,7 +11,7 @@ import { BlogType } from "@/libs/types/types";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import { Link } from "@/i18n/routing";
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { AnimatedElement } from "../animations/AnimationType";
 import SmallHeadSpan from "../SharedComponent/SmallHeadSpan";
 import SectionButton from "../SharedComponent/SectionButton";
@@ -19,6 +19,7 @@ import SectionButton from "../SharedComponent/SectionButton";
 const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
   const t = useTranslations("home");
   const tBlog = useTranslations("blog");
+  const locale = useLocale();
 
   return (
     <div className="space-y-24 pt-20 max-w-6xl mx-auto overflow-hidden">
@@ -52,7 +53,9 @@ const OurBlogs = ({ blogs }: { blogs: BlogType[] }) => {
               duration={1}
               className="w-full h-full"
             >
-              <SectionButton href="/blogs">{t("view_all")}</SectionButton>
+              <SectionButton href={`${locale}/blogs`}>
+                {t("view_all")}
+              </SectionButton>
             </AnimatedElement>
           </div>
         </div>
